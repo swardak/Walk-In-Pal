@@ -1,12 +1,23 @@
 <resources>
-    <string name="app_name">MyWalkInPal</string>
+    <string name="app_name">Walk-In-Pal</string>
     <!-- Strings related to login -->
-    <string name="prompt_email">Email</string>
+    <string name="prompt_username">Username</string>
     <string name="prompt_password">Password</string>
-    <string name="action_sign_in">Sign in or register</string>
-    <string name="action_sign_in_short">Sign in</string>
+    <string name="action_sign_up">Don\'t have an account? Sign up here!</string>
+    <string name="action_login">Login</string>
     <string name="welcome">"Welcome !"</string>
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
+    <string name="login">Login</string>
+    <string name="signup">Sign up</string>
+    <string name="logo">Walk-in Pal</string>
+    <string name="logodescription">Walk-In Pal logo</string>
+    <string name="userloggedinas">You are logged in as .</string>
+    <string name="firstname">First name</string>
+    <string name="lastname">Last name</string>
+    <string name="emailaddress">Email address</string>
+    <string name="createnewaccountmessage">Create a new account:</string>
+    <string name="employeeaccount">Employee account</string>
+    <string name="patientaccount">Patient account</string>
 </resources>
