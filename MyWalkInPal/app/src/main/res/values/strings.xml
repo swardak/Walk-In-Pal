@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 <resources>
     <string name="app_name">Walk-In-Pal</string>
     <!-- Strings related to login -->
@@ -21,3 +22,7 @@
     <string name="employeeaccount">Employee account</string>
     <string name="patientaccount">Patient account</string>
 </resources>
+=======
+<?xml version="1.0" encoding="utf-8"?>
+<resources></resources>
+>>>>>>> Stashed changes
