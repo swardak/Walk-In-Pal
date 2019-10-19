@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1070770059765",
+    "firebase_url": "https://walkinpal.firebaseio.com",
+    "project_id": "walkinpal",
+    "storage_bucket": "walkinpal.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1070770059765:android:805d54b3bdfb1a013508bc",
+        "android_client_info": {
+          "package_name": "com.example.mywalkinpal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1070770059765-ulqtmdp2qgmncarm5ue6u9h009o1dtkl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAaXqMI6xVgkmLRVmudTi_jMQ0b-V048VY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1070770059765-ulqtmdp2qgmncarm5ue6u9h009o1dtkl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
