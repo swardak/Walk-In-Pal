@@ -54,7 +54,7 @@ public class SignUpActivity extends AppCompatActivity {
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onRadioButtonClicked(v);
+                //onRadioButtonClicked(v);
                 if (validate()){
                     String user_Email = userEmail.getText().toString().trim();
                     String user_Pass = userPassword.getText().toString().trim();
