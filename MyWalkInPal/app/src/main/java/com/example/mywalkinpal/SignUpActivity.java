@@ -12,8 +12,9 @@ import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.example.mywalkinpal.data.model.LoggedInUser;
-import com.example.mywalkinpal.ui.login.LoginActivity;
+//import com.example.mywalkinpal.data.model.LoggedInUser;
+//import com.example.mywalkinpal.ui.login.LoginActivity;
+import com.example.mywalkinpal.ui.login.UserProfile;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -40,6 +41,7 @@ public class SignUpActivity extends AppCompatActivity {
     private FirebaseAuth fbAuth;
     private RadioButton chooseUser;
     private int userType; // 0 for patient, 1 for employee
+    DatabaseReference mDatabase;
 
 
     
@@ -50,6 +52,7 @@ public class SignUpActivity extends AppCompatActivity {
         setupUIViews();
 
         fbAuth = FirebaseAuth.getInstance();
+        mDatabase = FirebaseDatabase.getInstance().getReference();
 
         registerButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,6 +71,7 @@ public class SignUpActivity extends AppCompatActivity {
                             if(task.isSuccessful()){
                                 FirebaseUser user = fbAuth.getCurrentUser();
                                 Toast.makeText(SignUpActivity.this, "Successfully Registered!", Toast.LENGTH_SHORT).show();
+                                sendUserData();
                                 finish();
                             }else{
                                 Toast.makeText(SignUpActivity.this, "Registration Failed.", Toast.LENGTH_SHORT).show();
@@ -134,10 +138,22 @@ public class SignUpActivity extends AppCompatActivity {
                 if(checked)
                     userType = 0;
         }
+    }
+    private void sendUserData(){
+        String firstName = userFN.getText().toString();
+        String lastName = userLN.getText().toString();
+        String eMail = userEmail.getText().toString();
+        //FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+       // FirebaseUser user = fbAuth.getCurrentUser();
+        //DatabaseReference myRef = firebaseDatabase.getReference(fbAuth.getUid()).child("Users");
+
+        UserProfile userProfile = new UserProfile(firstName, lastName, eMail, "Patient");
+        mDatabase.child("Users").child(fbAuth.getUid()).setValue(userProfile);
+        Toast.makeText(SignUpActivity.this, "Data sent to Database", Toast.LENGTH_SHORT).show();
+
+
 
     }
-
-
-    }
+}
 
 
