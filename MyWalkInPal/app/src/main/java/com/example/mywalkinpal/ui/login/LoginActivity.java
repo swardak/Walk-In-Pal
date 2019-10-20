@@ -97,9 +97,6 @@ public class LoginActivity extends AppCompatActivity {
         final Button loginButton = findViewById(R.id.LoginButton);
         final Button signUpButton = findViewById(R.id.SignUpButton);
 
-
-
-
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -131,7 +128,7 @@ public class LoginActivity extends AppCompatActivity {
                             else{
                                 Toast.makeText(getApplicationContext(), "Success!.", Toast.LENGTH_SHORT).show();
 
-                                //startActivity(new Intent(LoginActivity.this, LoggedInUser.class));
+                                startActivity(new Intent(LoginActivity.this, LoggedInUser.class));
 
                             }
                         }
@@ -139,11 +136,16 @@ public class LoginActivity extends AppCompatActivity {
 
                 }
 
+                else{
+                    Toast.makeText(getApplicationContext(), "An error occurred.", Toast.LENGTH_SHORT).show();
+
+                }
 
 
 
-                loginViewModel.login(usernameEditText.getText().toString(),
-                        passwordEditText.getText().toString());
+
+                //loginViewModel.login(usernameEditText.getText().toString(),
+                        //passwordEditText.getText().toString());
             }
         });
 
