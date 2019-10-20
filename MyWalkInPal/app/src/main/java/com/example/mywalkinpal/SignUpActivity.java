@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.text.method.SingleLineTransformationMethod;
 import android.view.View;
 import android.widget.EditText;
@@ -111,6 +112,8 @@ public class SignUpActivity extends AppCompatActivity {
         String eMail = userEmail.getText().toString();
         String password = userPassword.getText().toString();
         String confirmedPassword = userConfirmedPassword.getText().toString();
+        RadioButton employee = findViewById(R.id.employeeButton);
+        RadioButton patient = findViewById(R.id.patientButton);
 
         if(firstName.isEmpty() && password.isEmpty() && confirmedPassword.isEmpty() && lastName.isEmpty() && eMail.isEmpty()){
             Toast.makeText(SignUpActivity.this, "Please enter all the details", Toast.LENGTH_SHORT).show();
@@ -118,6 +121,15 @@ public class SignUpActivity extends AppCompatActivity {
 
         else if(confirmedPassword.compareTo(password) != 0){
             Toast.makeText(SignUpActivity.this, "Passwords don't match", Toast.LENGTH_SHORT).show();
+
+        }
+
+        else if(confirmedPassword.length() < 8){
+            Toast.makeText(SignUpActivity.this, "Password too short!", Toast.LENGTH_SHORT).show();
+
+        }
+        else if(!employee.isChecked() ||!patient.isChecked()){
+            Toast.makeText(SignUpActivity.this, "Please select an account type", Toast.LENGTH_SHORT).show();
 
         }
 
