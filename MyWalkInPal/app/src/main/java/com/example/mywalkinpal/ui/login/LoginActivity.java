@@ -18,97 +18,130 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.content.Intent;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.media.MediaPlayer;
+import android.os.Bundle;
+import android.provider.MediaStore;
+import android.text.method.SingleLineTransformationMethod;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.Button;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.TextView;
+import android.widget.Toast;
+//import com.example.mywalkinpal.data.model.LoggedInUser;
+//import com.example.mywalkinpal.ui.login.LoginActivity;
+import com.example.mywalkinpal.data.model.LoggedInUser;
+import com.example.mywalkinpal.ui.login.UserProfile;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnCanceledListener;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+import android.content.Intent;
 
 import com.example.mywalkinpal.R;
 import com.example.mywalkinpal.SignUpActivity;
 import com.example.mywalkinpal.ui.login.LoginViewModel;
 import com.example.mywalkinpal.ui.login.LoginViewModelFactory;
+import com.google.firebase.auth.AuthResult;
+
 
 public class LoginActivity extends AppCompatActivity {
 
     private LoginViewModel loginViewModel;
+    private FirebaseAuth fbAuth;
+    private FirebaseAuth.AuthStateListener mAuthStateListener;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        loginViewModel = ViewModelProviders.of(this, new LoginViewModelFactory())
-                .get(LoginViewModel.class);
+
+        fbAuth = FirebaseAuth.getInstance();
+
+        mAuthStateListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser mFirebaseUser = fbAuth.getCurrentUser();
+                if(mFirebaseUser != null){
+                    Toast.makeText(getApplicationContext(), "You are logged in!", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(LoginActivity.this,LoggedInUserView.class));
+
+                }
+                else{
+                    Toast.makeText(getApplicationContext(), "Please log in!", Toast.LENGTH_SHORT).show();
+
+                }
+
+            }
+        };
+
 
         final EditText usernameEditText = findViewById(R.id.emailField);
         final EditText passwordEditText = findViewById(R.id.passField);
         final Button loginButton = findViewById(R.id.LoginButton);
         final Button signUpButton = findViewById(R.id.SignUpButton);
 
-        loginViewModel.getLoginFormState().observe(this, new Observer<LoginFormState>() {
-            @Override
-            public void onChanged(@Nullable LoginFormState loginFormState) {
-                if (loginFormState == null) {
-                    return;
-                }
-                loginButton.setEnabled(loginFormState.isDataValid());
-                if (loginFormState.getUsernameError() != null) {
-                    usernameEditText.setError(getString(loginFormState.getUsernameError()));
-                }
-                if (loginFormState.getPasswordError() != null) {
-                    passwordEditText.setError(getString(loginFormState.getPasswordError()));
-                }
-            }
-        });
 
-        loginViewModel.getLoginResult().observe(this, new Observer<LoginResult>() {
-            @Override
-            public void onChanged(@Nullable LoginResult loginResult) {
-                if (loginResult == null) {
-                    return;
-                }
-                if (loginResult.getError() != null) {
-                    showLoginFailed(loginResult.getError());
-                }
-                if (loginResult.getSuccess() != null) {
-                    updateUiWithUser(loginResult.getSuccess());
-                }
-                setResult(Activity.RESULT_OK);
 
-                //Complete and destroy login activity once successful
-                finish();
-            }
-        });
-
-        TextWatcher afterTextChangedListener = new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                // ignore
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                // ignore
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                loginViewModel.loginDataChanged(usernameEditText.getText().toString(),
-                        passwordEditText.getText().toString());
-            }
-        };
-        usernameEditText.addTextChangedListener(afterTextChangedListener);
-        passwordEditText.addTextChangedListener(afterTextChangedListener);
-        passwordEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
-
-            @Override
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    loginViewModel.login(usernameEditText.getText().toString(),
-                            passwordEditText.getText().toString());
-                }
-                return false;
-            }
-        });
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                String eMail = usernameEditText.getText().toString();
+                String pass = passwordEditText.getText().toString();
+
+                if(eMail.isEmpty()){
+                    Toast.makeText(getApplicationContext(), "Please enter an e-mail.", Toast.LENGTH_SHORT).show();
+
+                }
+                if(pass.isEmpty()){
+                    Toast.makeText(getApplicationContext(), "Please enter a password.", Toast.LENGTH_SHORT).show();
+
+                }
+
+                if(eMail.isEmpty() && pass.isEmpty()){
+                    Toast.makeText(getApplicationContext(), "Please enter an e-mail and password.", Toast.LENGTH_SHORT).show();
+
+                }
+                else if( !eMail.isEmpty() && !pass.isEmpty()){
+                    fbAuth.signInWithEmailAndPassword(eMail,pass).addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if(!task.isSuccessful()){
+                                Toast.makeText(getApplicationContext(), "Login Failed. Please try again.", Toast.LENGTH_SHORT).show();
+
+                            }
+                            else{
+                                Toast.makeText(getApplicationContext(), "Success!.", Toast.LENGTH_SHORT).show();
+
+                                //startActivity(new Intent(LoginActivity.this, LoggedInUser.class));
+
+                            }
+                        }
+                    });
+
+                }
+
+
+
+
                 loginViewModel.login(usernameEditText.getText().toString(),
                         passwordEditText.getText().toString());
             }
@@ -122,13 +155,20 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    private void updateUiWithUser(LoggedInUserView model) {
+   /* private void updateUiWithUser(LoggedInUserView model) {
         String welcome = getString(R.string.welcome) + model.getDisplayName();
         // TODO : initiate successful logged in experience
         Toast.makeText(getApplicationContext(), welcome, Toast.LENGTH_LONG).show();
-    }
+    }*/
 
     private void showLoginFailed(@StringRes Integer errorString) {
         Toast.makeText(getApplicationContext(), errorString, Toast.LENGTH_SHORT).show();
     }
+
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser currentUser = fbAuth.getCurrentUser();
+    }
+
 }
