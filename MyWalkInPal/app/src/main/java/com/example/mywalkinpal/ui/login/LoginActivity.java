@@ -131,7 +131,7 @@ public class LoginActivity extends AppCompatActivity {
                             else{
                                 Toast.makeText(getApplicationContext(), "Success!.", Toast.LENGTH_SHORT).show();
 
-                                //startActivity(new Intent(LoginActivity.this, LoggedInUser.class));
+                                startActivity(new Intent(LoginActivity.this, LoggedInUser.class));
 
                             }
                         }
@@ -139,11 +139,8 @@ public class LoginActivity extends AppCompatActivity {
 
                 }
 
-
-
-
-                loginViewModel.login(usernameEditText.getText().toString(),
-                        passwordEditText.getText().toString());
+               // loginViewModel.login(usernameEditText.getText().toString(),
+               //         passwordEditText.getText().toString());
             }
         });
 

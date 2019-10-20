@@ -128,7 +128,7 @@ public class SignUpActivity extends AppCompatActivity {
             Toast.makeText(SignUpActivity.this, "Password too short!", Toast.LENGTH_SHORT).show();
 
         }
-        else if(!employee.isChecked() ||!patient.isChecked()){
+        else if(!employee.isChecked() && !patient.isChecked()){
             Toast.makeText(SignUpActivity.this, "Please select an account type", Toast.LENGTH_SHORT).show();
 
         }

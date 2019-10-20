@@ -38,7 +38,7 @@ public class UserProfile {
         this.userLastName = userLastName;
     }
 
-    public String getUserLasttName() {
+    public String getUserLastName() {
         return userLastName;
     }
 
