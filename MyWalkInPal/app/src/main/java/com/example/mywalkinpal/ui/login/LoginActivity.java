@@ -128,18 +128,17 @@ public class LoginActivity extends AppCompatActivity {
                             else{
                                 Toast.makeText(getApplicationContext(), "Success!.", Toast.LENGTH_SHORT).show();
 
-                                startActivity(new Intent(LoginActivity.this, LoggedInUser.class));
+                                //startActivity(new Intent(LoginActivity.this, LoggedInUser.class));
 
                             }
                         }
                     });
 
                 }
-
-<<<<<<< HEAD
+                
                // loginViewModel.login(usernameEditText.getText().toString(),
                //         passwordEditText.getText().toString());
-=======
+
                 else{
                     Toast.makeText(getApplicationContext(), "An error occurred.", Toast.LENGTH_SHORT).show();
 
@@ -150,7 +149,6 @@ public class LoginActivity extends AppCompatActivity {
 
                 //loginViewModel.login(usernameEditText.getText().toString(),
                         //passwordEditText.getText().toString());
->>>>>>> 9bbce28adc74fecc8c1a01d017a393284ea8b177
             }
         });
 
