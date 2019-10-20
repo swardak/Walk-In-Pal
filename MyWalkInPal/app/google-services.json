@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "1070770059765-fcvi8qrjibgd0l7i26mfqth29340grpu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.mywalkinpal",
+            "certificate_hash": "8273281d5c3bcc9a884731a280adac70a833db54"
+          }
+        },
+        {
           "client_id": "1070770059765-ruldaogtt8l81uee2givnpfbb5e194jc.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
