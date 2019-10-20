@@ -9,4 +9,17 @@
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
+    <string name="prompt_confirmpassword">Confirm password</string>
+    <string name="hint_email">you@example.com</string>
+    <string name="action_register">New here? Sign up!</string>
+    <string name="contentdesc_walkinpallogo">Walk-In Pal Logo</string>
+    <string name="hint_firstname">Mary</string>
+    <string name="prompt_firstname">First name</string>
+    <string name="hint_lastname">Jane</string>
+    <string name="prompt_lastname">Last name</string>
+    <string name="hint_password">Minimum 8 characters</string>
+    <string name="hint_reenterpass">Re-enter your password</string>
+    <string name="action_employeebutton">I\'m an Employee</string>
+    <string name="action_patientbutton">I\'m a Patient</string>
+    <string name="action_registeraccount">Register</string>
 </resources>
