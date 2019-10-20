@@ -49,6 +49,10 @@ public class HomeActivity extends AppCompatActivity {
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     UserProfile user = dataSnapshot.getValue(UserProfile.class);
 
+                    if(user.getUserFirstName().compareTo("Admin") == 0){
+                        user.setUserType("Admin");
+                    }
+
                     firstName.setText(user.getUserFirstName());
                     userType.setText(user.getUserType());
 
