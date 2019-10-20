@@ -5,11 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.text.method.SingleLineTransformationMethod;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Button;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 //import com.example.mywalkinpal.data.model.LoggedInUser;
@@ -31,6 +33,8 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import android.content.Intent;
+import java.security.MessageDigest;
+
 
 
 
@@ -39,7 +43,8 @@ public class SignUpActivity extends AppCompatActivity {
     private EditText userFN, userLN, userEmail, userPassword, userConfirmedPassword;
     private Button registerButton;
     private FirebaseAuth fbAuth;
-    private RadioButton chooseUser;
+    private RadioButton selectedRadioButton;
+    private RadioGroup chooseUser;
     private int userType; // 0 for patient, 1 for employee
     DatabaseReference mDatabase;
 
@@ -107,6 +112,8 @@ public class SignUpActivity extends AppCompatActivity {
         String eMail = userEmail.getText().toString();
         String password = userPassword.getText().toString();
         String confirmedPassword = userConfirmedPassword.getText().toString();
+        RadioButton employee = findViewById(R.id.employeeButton);
+        RadioButton patient = findViewById(R.id.patientButton);
 
         if(firstName.isEmpty() && password.isEmpty() && confirmedPassword.isEmpty() && lastName.isEmpty() && eMail.isEmpty()){
             Toast.makeText(SignUpActivity.this, "Please enter all the details", Toast.LENGTH_SHORT).show();
@@ -114,6 +121,15 @@ public class SignUpActivity extends AppCompatActivity {
 
         else if(confirmedPassword.compareTo(password) != 0){
             Toast.makeText(SignUpActivity.this, "Passwords don't match", Toast.LENGTH_SHORT).show();
+
+        }
+
+        else if(confirmedPassword.length() < 8){
+            Toast.makeText(SignUpActivity.this, "Password too short!", Toast.LENGTH_SHORT).show();
+
+        }
+        else if(!employee.isChecked() ||!patient.isChecked()){
+            Toast.makeText(SignUpActivity.this, "Please select an account type", Toast.LENGTH_SHORT).show();
 
         }
 
@@ -143,16 +159,51 @@ public class SignUpActivity extends AppCompatActivity {
         String firstName = userFN.getText().toString();
         String lastName = userLN.getText().toString();
         String eMail = userEmail.getText().toString();
+        String pass = userConfirmedPassword.getText().toString();
+        String userTypestr;
+
         //FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
        // FirebaseUser user = fbAuth.getCurrentUser();
         //DatabaseReference myRef = firebaseDatabase.getReference(fbAuth.getUid()).child("Users");
 
-        UserProfile userProfile = new UserProfile(firstName, lastName, eMail, "Patient");
+        chooseUser = findViewById(R.id.chooseUser);
+        int radioId = chooseUser.getCheckedRadioButtonId();
+        selectedRadioButton = findViewById(radioId);
+
+        userTypestr = selectedRadioButton.getText().toString();
+        if(userTypestr.compareTo("I'm an Employee")==0){
+            userTypestr = "Employee";
+        }
+        else if(userTypestr.compareTo("I'm a Patient") == 0){
+            userTypestr = "Patient";
+        }
+
+        String hashedPass = sha256(pass);
+
+        UserProfile userProfile = new UserProfile(firstName, lastName, eMail,userTypestr,hashedPass);
         mDatabase.child("Users").child(fbAuth.getUid()).setValue(userProfile);
         Toast.makeText(SignUpActivity.this, "Data sent to Database", Toast.LENGTH_SHORT).show();
 
 
 
+    }
+
+    public static String sha256(String base) {
+        try{
+            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+            byte[] hash = digest.digest(base.getBytes("UTF-8"));
+            StringBuffer hexString = new StringBuffer();
+
+            for (int i = 0; i < hash.length; i++) {
+                String hex = Integer.toHexString(0xff & hash[i]);
+                if(hex.length() == 1) hexString.append('0');
+                hexString.append(hex);
+            }
+
+            return hexString.toString();
+        } catch(Exception ex){
+            throw new RuntimeException(ex);
+        }
     }
 }
 

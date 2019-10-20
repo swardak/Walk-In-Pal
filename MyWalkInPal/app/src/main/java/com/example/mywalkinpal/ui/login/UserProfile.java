@@ -5,17 +5,19 @@ public class UserProfile {
     public String userFirstName;
     public String userLastName;
     public String userType;
+    public String hashedPass;
 
-    public  UserProfile( ){
+    public  UserProfile(){
 
     }
 
 
-    public UserProfile(String userFirstName, String userLastName, String userEmail, String userType) {
+    public UserProfile(String userFirstName, String userLastName, String userEmail, String userType,String hashedPass) {
         this.userEmail = userEmail;
         this.userFirstName = userFirstName;
         this.userLastName = userLastName;
         this.userType = userType;
+        this.hashedPass = hashedPass;
     }
 
 
@@ -47,5 +49,9 @@ public class UserProfile {
     public String getUserType(){
         return userType;
     }
+
+    public String getHashedPass(){return hashedPass;}
+
+    public void setHashedPass(String pass){this.hashedPass = pass;}
 
 }
