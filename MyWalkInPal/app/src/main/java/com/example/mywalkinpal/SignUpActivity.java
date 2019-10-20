@@ -166,7 +166,7 @@ public class SignUpActivity extends AppCompatActivity {
        // FirebaseUser user = fbAuth.getCurrentUser();
         //DatabaseReference myRef = firebaseDatabase.getReference(fbAuth.getUid()).child("Users");
 
-        chooseUser = findViewById(R.id.chooserUser);
+        chooseUser = findViewById(R.id.chooseUser);
         int radioId = chooseUser.getCheckedRadioButtonId();
         selectedRadioButton = findViewById(radioId);
 

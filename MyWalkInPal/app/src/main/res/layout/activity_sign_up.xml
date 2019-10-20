@@ -160,14 +160,14 @@
             android:text="@string/prompt_confirmpassword"
             android:textColor="@android:color/white"
             android:textSize="18sp"
-            app:layout_constraintBottom_toTopOf="@+id/chooserUser"
-            app:layout_constraintEnd_toEndOf="@+id/chooserUser"
-            app:layout_constraintStart_toStartOf="@+id/chooserUser"
+            app:layout_constraintBottom_toTopOf="@+id/chooseUser"
+            app:layout_constraintEnd_toEndOf="@+id/chooseUser"
+            app:layout_constraintStart_toStartOf="@+id/chooseUser"
             app:layout_constraintTop_toBottomOf="@+id/entconfirmPassfield" />
 
 
         <RadioGroup
-            android:id="@+id/chooserUser"
+            android:id="@+id/chooseUser"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -218,9 +218,9 @@
             android:textColor="@android:color/white"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/chooserUser"
-            app:layout_constraintStart_toStartOf="@+id/chooserUser"
-            app:layout_constraintTop_toBottomOf="@+id/chooserUser" />
+            app:layout_constraintEnd_toEndOf="@+id/chooseUser"
+            app:layout_constraintStart_toStartOf="@+id/chooseUser"
+            app:layout_constraintTop_toBottomOf="@+id/chooseUser" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
