@@ -7,7 +7,7 @@ public class UserProfile {
     public String userType;
     public String hashedPass;
 
-    public  UserProfile( ){
+    public  UserProfile(){
 
     }
 
