@@ -35,7 +35,7 @@ class LoggedInUserView extends AppCompatActivity {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         String userID = user.getUid();
 
-        Query query = FirebaseDatabase.getInstance().getReference("Users").orderByChild("userFirstName").equalTo(userID)
+        Query query = FirebaseDatabase.getInstance().getReference("Users").orderByChild("userFirstName").equalTo(userID);
 
 
 
