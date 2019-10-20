@@ -13,7 +13,7 @@
     tools:context=".ui.login.LoginActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/linearLayout"
+        android:id="@+id/mainAppContainer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -160,14 +160,14 @@
             android:text="@string/prompt_confirmpassword"
             android:textColor="@android:color/white"
             android:textSize="18sp"
-            app:layout_constraintBottom_toTopOf="@+id/userTypeButton"
-            app:layout_constraintEnd_toEndOf="@+id/userTypeButton"
-            app:layout_constraintStart_toStartOf="@+id/userTypeButton"
+            app:layout_constraintBottom_toTopOf="@+id/chooserUser"
+            app:layout_constraintEnd_toEndOf="@+id/chooserUser"
+            app:layout_constraintStart_toStartOf="@+id/chooserUser"
             app:layout_constraintTop_toBottomOf="@+id/entconfirmPassfield" />
 
 
         <RadioGroup
-            android:id="@+id/userTypeButton"
+            android:id="@+id/chooserUser"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -218,9 +218,9 @@
             android:textColor="@android:color/white"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/userTypeButton"
-            app:layout_constraintStart_toStartOf="@+id/userTypeButton"
-            app:layout_constraintTop_toBottomOf="@+id/userTypeButton" />
+            app:layout_constraintEnd_toEndOf="@+id/chooserUser"
+            app:layout_constraintStart_toStartOf="@+id/chooserUser"
+            app:layout_constraintTop_toBottomOf="@+id/chooserUser" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
