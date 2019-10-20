@@ -24,55 +24,16 @@ import com.google.firebase.database.ValueEventListener;
  * Class exposing authenticated user details to the UI.
  */
 class LoggedInUserView extends AppCompatActivity {
+    private String displayName;
+    //... other data fields that may be accessible to the UI
 
-    Button logout;
-    //FirebaseAuth fbAuth;
-    DatabaseReference dbUsers;
-    EditText firstName;
+    LoggedInUserView(String displayName) {
+        this.displayName = displayName;
+    }
 
-    //@Override
-    /*protected void onCreate(Bundle savedInstanceState){
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
-
-        dbUsers = FirebaseDatabase.getInstance().getReference("Users");
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        String userID = user.getUid();
-
-        Query query = dbUsers.orderByChild("userFirstName").equalTo(userID);
-
-
-        query.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                if(dataSnapshot.exists()){
-                    UserProfile user = dataSnapshot.getValue(UserProfile.class);
-                    String name = user.getUserFirstName();
-                    firstName = (EditText) findViewById(R.id.userWelcome);
-                    firstName.setText(name);
-                }
-                else{
-                    Toast.makeText(LoggedInUserView.this, "Can't find user!", Toast.LENGTH_SHORT).show();
-
-                }
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(LoggedInUserView.this, "Can't find user!", Toast.LENGTH_SHORT).show();
-
-            }
-        });
-
-
-
-
-
-
-
-    }*/
+    String getDisplayName() {
+        return displayName;
+    }
 
 
 }

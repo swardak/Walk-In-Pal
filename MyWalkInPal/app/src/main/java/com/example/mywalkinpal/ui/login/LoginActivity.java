@@ -34,6 +34,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 //import com.example.mywalkinpal.data.model.LoggedInUser;
 //import com.example.mywalkinpal.ui.login.LoginActivity;
+import com.example.mywalkinpal.HomeActivity;
 import com.example.mywalkinpal.data.model.LoggedInUser;
 import com.example.mywalkinpal.ui.login.UserProfile;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -80,7 +81,7 @@ public class LoginActivity extends AppCompatActivity {
                 FirebaseUser mFirebaseUser = fbAuth.getCurrentUser();
                 if(mFirebaseUser != null){
                     Toast.makeText(getApplicationContext(), "You are logged in!", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(LoginActivity.this,LoggedInUserView.class));
+                    startActivity(new Intent(LoginActivity.this,HomeActivity.class));
 
                 }
                 else{
@@ -128,7 +129,7 @@ public class LoginActivity extends AppCompatActivity {
                             else{
                                 Toast.makeText(getApplicationContext(), "Success!.", Toast.LENGTH_SHORT).show();
 
-                                startActivity(new Intent(LoginActivity.this, LoggedInUserView.class));
+                                startActivity(new Intent(LoginActivity.this, HomeActivity.class));
 
                             }
                         }
