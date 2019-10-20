@@ -3,6 +3,7 @@ package com.example.mywalkinpal;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -20,50 +21,47 @@ import com.google.firebase.database.ValueEventListener;
 
 public class HomeActivity extends AppCompatActivity {
     Button logout;
-    //FirebaseAuth fbAuth;
+    FirebaseAuth fbAuth;
     DatabaseReference dbUsers;
-    EditText firstName;
+    TextView firstName;
+    TextView userType;
+    FirebaseUser mUser;
+
 
     //@Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        dbUsers = FirebaseDatabase.getInstance().getReference("Users");
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        String userID = user.getUid();
+        fbAuth = FirebaseAuth.getInstance();
+        mUser = fbAuth.getCurrentUser();
+        dbUsers = FirebaseDatabase.getInstance().getReference();
+        firstName = (TextView) findViewById(R.id.userWelcome);
+        userType =(TextView) findViewById(R.id.userType);
 
-        Query query = dbUsers.orderByChild("userFirstName").equalTo(userID);
+        if(mUser == null){
+            finish();
+        }
 
-
-        query.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
-                if(dataSnapshot.exists()){
+        else{
+            dbUsers.child("Users").child(mUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     UserProfile user = dataSnapshot.getValue(UserProfile.class);
-                    String name = user.getUserFirstName();
-                    firstName = (EditText) findViewById(R.id.userWelcome);
-                    firstName.setText(name);
+
+                    firstName.setText(user.getUserFirstName());
+                    userType.setText(user.getUserType());
+
+
+
                 }
-                else{
-                    Toast.makeText(HomeActivity.this, "Can't find user!", Toast.LENGTH_SHORT).show();
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
 
                 }
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(HomeActivity.this, "Can't find user!", Toast.LENGTH_SHORT).show();
-
-            }
-        });
-
-
-
-
-
+            });
+        }
 
 
     }
