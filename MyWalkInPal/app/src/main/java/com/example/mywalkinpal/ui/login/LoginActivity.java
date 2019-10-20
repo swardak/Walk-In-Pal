@@ -138,6 +138,10 @@ public class LoginActivity extends AppCompatActivity {
 
                // loginViewModel.login(usernameEditText.getText().toString(),
                //         passwordEditText.getText().toString());
+                
+               // loginViewModel.login(usernameEditText.getText().toString(),
+               //         passwordEditText.getText().toString());
+
                 else{
                     Toast.makeText(getApplicationContext(), "An error occurred.", Toast.LENGTH_SHORT).show();
 
