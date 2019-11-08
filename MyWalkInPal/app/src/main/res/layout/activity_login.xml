@@ -29,13 +29,15 @@
             app:layout_constraintBottom_toTopOf="@+id/logoWalkInPal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.39" />
 
 
         <ImageView
             android:id="@+id/logoWalkInPal"
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
             android:contentDescription="@string/contentdesc_walkinpallogo"
             app:layout_constraintBottom_toTopOf="@+id/space5"
             app:layout_constraintEnd_toEndOf="parent"
@@ -48,45 +50,20 @@
             android:id="@+id/space5"
             android:layout_width="373dp"
             android:layout_height="74dp"
-            app:layout_constraintBottom_toTopOf="@+id/emailField"
+            app:layout_constraintBottom_toTopOf="@+id/entEmailtxt"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/logoWalkInPal" />
 
         <EditText
             android:id="@+id/emailField"
-            android:layout_width="0dp"
+            android:layout_width="245dp"
             android:layout_height="wrap_content"
             android:autofillHints="@string/prompt_email"
             android:ems="10"
             android:hint="@string/hint_email"
             android:inputType="textEmailAddress"
-            android:textColorHint="#FFA4A4"
-            app:layout_constraintBottom_toTopOf="@+id/entEmailtxt"
-            app:layout_constraintEnd_toEndOf="@+id/entEmailtxt"
-            app:layout_constraintStart_toStartOf="@+id/entEmailtxt"
-            app:layout_constraintTop_toBottomOf="@+id/space5" />
-
-        <TextView
-            android:id="@+id/entEmailtxt"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@string/prompt_email"
             android:textColor="@android:color/white"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toTopOf="@+id/passField"
-            app:layout_constraintEnd_toEndOf="@+id/passField"
-            app:layout_constraintStart_toStartOf="@+id/passField"
-            app:layout_constraintTop_toBottomOf="@+id/emailField" />
-
-        <EditText
-            android:id="@+id/passField"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:autofillHints="@string/prompt_password"
-            android:ems="10"
-            android:hint="@string/prompt_password"
-            android:inputType="textPassword"
             android:textColorHint="#FFA4A4"
             app:layout_constraintBottom_toTopOf="@+id/entPasswordtxt"
             app:layout_constraintEnd_toEndOf="@+id/entPasswordtxt"
@@ -94,18 +71,46 @@
             app:layout_constraintTop_toBottomOf="@+id/entEmailtxt" />
 
         <TextView
-            android:id="@+id/entPasswordtxt"
-            android:layout_width="0dp"
+            android:id="@+id/entEmailtxt"
+            android:layout_width="245dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:text="@string/prompt_password"
+            android:text="@string/prompt_email"
             android:textColor="@android:color/white"
             android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@+id/emailField"
+            app:layout_constraintEnd_toEndOf="@+id/emailField"
+            app:layout_constraintStart_toStartOf="@+id/emailField"
+            app:layout_constraintTop_toBottomOf="@+id/space5" />
+
+        <EditText
+            android:id="@+id/passField"
+            android:layout_width="245dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="1dp"
+            android:autofillHints="@string/prompt_password"
+            android:ems="10"
+            android:hint="@string/prompt_password"
+            android:inputType="textPassword"
+            android:textColor="@android:color/white"
+            android:textColorHint="#FFA4A4"
             app:layout_constraintBottom_toTopOf="@+id/LoginButton"
             app:layout_constraintEnd_toEndOf="@+id/LoginButton"
             app:layout_constraintStart_toStartOf="@+id/LoginButton"
-            app:layout_constraintTop_toBottomOf="@+id/passField" />
+            app:layout_constraintTop_toBottomOf="@+id/entPasswordtxt" />
 
+
+        <TextView
+            android:id="@+id/entPasswordtxt"
+            android:layout_width="245dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/prompt_password"
+            android:textColor="@android:color/white"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@+id/passField"
+            app:layout_constraintEnd_toEndOf="@+id/passField"
+            app:layout_constraintStart_toStartOf="@+id/passField"
+            app:layout_constraintTop_toBottomOf="@+id/emailField" />
 
         <Button
             android:id="@+id/LoginButton"
@@ -113,8 +118,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="64dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="64dp"
-            android:layout_marginBottom="2dp"
             android:background="#E0272E"
             android:text="@string/action_sign_in_short"
             android:textColor="@android:color/white"
@@ -122,7 +127,7 @@
             app:layout_constraintBottom_toTopOf="@+id/space6"
             app:layout_constraintEnd_toEndOf="@+id/space6"
             app:layout_constraintStart_toStartOf="@+id/space6"
-            app:layout_constraintTop_toBottomOf="@+id/entPasswordtxt" />
+            app:layout_constraintTop_toBottomOf="@+id/passField" />
 
 
         <Space
