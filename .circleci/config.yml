@@ -1,7 +1,7 @@
-version: 2.0
+version: 2
 jobs:
   build:
-    working_directory: ~/MyWalkInPal
+    working_directory: ~/code
     docker:
       - image: circleci/android:api-29-alpha
     environment:
@@ -28,3 +28,4 @@ jobs:
           destination: apks/
       - store_test_results:
           path: app/build/test-results
+          
