@@ -1,6 +1,7 @@
 package com.example.mywalkinpal;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.media.MediaPlayer;
@@ -29,6 +30,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.annotations.NotNull;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -47,7 +49,6 @@ public class SignUpActivity extends AppCompatActivity {
     private RadioGroup chooseUser;
     private int userType; // 0 for patient, 1 for employee
     DatabaseReference mDatabase;
-
 
     
     @Override
@@ -103,28 +104,41 @@ public class SignUpActivity extends AppCompatActivity {
 
     }
 
+    private String getFirstName(){
+       return userFN.getText().toString();
+    }
+
+    private String getLastName(){
+        return userLN.getText().toString();
+    }
+
+    private String geteMail(){
+        return userEmail.getText().toString();
+    }
+    private String getPassword(){
+        return userPassword.getText().toString();
+    }
+    private String getConfirmedPassword(){
+        return userConfirmedPassword.getText().toString();
+    }
+
     private boolean validate(){
 
-        Boolean result = false;
-
-        String firstName = userFN.getText().toString();
-        String lastName = userLN.getText().toString();
-        String eMail = userEmail.getText().toString();
-        String password = userPassword.getText().toString();
-        String confirmedPassword = userConfirmedPassword.getText().toString();
         RadioButton employee = findViewById(R.id.employeeButton);
         RadioButton patient = findViewById(R.id.patientButton);
 
-        if(firstName.isEmpty() && password.isEmpty() && confirmedPassword.isEmpty() && lastName.isEmpty() && eMail.isEmpty()){
-            Toast.makeText(SignUpActivity.this, "Please enter all the details", Toast.LENGTH_SHORT).show();
+        boolean result = false;
+
+        if(!(validateNoEmptyFields(getFirstName(), getLastName(), geteMail(), getPassword(), getConfirmedPassword()))){
+            Toast.makeText(SignUpActivity.this, "Please fill out all fields", Toast.LENGTH_SHORT).show();
         }
 
-        else if(confirmedPassword.compareTo(password) != 0){
+        else if(!(validatePasswordsMatch(getPassword(), getConfirmedPassword()))){
             Toast.makeText(SignUpActivity.this, "Passwords don't match", Toast.LENGTH_SHORT).show();
 
         }
 
-        else if(confirmedPassword.length() < 8){
+        else if(!(validatePasswordLength(getPassword()))){
             Toast.makeText(SignUpActivity.this, "Password too short!", Toast.LENGTH_SHORT).show();
 
         }
@@ -138,8 +152,31 @@ public class SignUpActivity extends AppCompatActivity {
         }
 
         return result;
+    }
 
+    protected static boolean validateNoEmptyFields(String firstName, String lastName, String eMail, String password, String confirmedPassword){
+        boolean result = true;
 
+        if(firstName.isEmpty() || password.isEmpty() || confirmedPassword.isEmpty() || lastName.isEmpty() || eMail.isEmpty()){
+            result = false;
+        }
+        return result;
+    }
+
+    protected static boolean validatePasswordsMatch(String password, String confirmedPassword){
+        boolean result = true;
+        if (confirmedPassword.compareTo(password) != 0){
+            result = false;
+        }
+        return result;
+    }
+
+    protected static boolean validatePasswordLength(String password){
+        boolean result = true;
+        if (password.length() < 8){
+            result = false;
+        }
+        return result;
     }
 
     public void onRadioButtonClicked(View view){
