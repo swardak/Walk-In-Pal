@@ -1,3 +1,11 @@
+workflows:
+  version: 2
+  main:
+    jobs:
+    - build:
+        filters:
+          branches:
+            only: unittesting
 version: 2
 jobs:
   build:
@@ -28,4 +36,3 @@ jobs:
           destination: apks/
       - store_test_results:
           path: app/build/test-results
-          
