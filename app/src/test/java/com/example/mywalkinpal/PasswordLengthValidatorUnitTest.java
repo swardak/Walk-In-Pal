@@ -16,6 +16,6 @@ public class PasswordLengthValidatorUnitTest {
 
     @Test
     public void passwordLengthValidatorUnitTest_PasswordNull_ReturnsFalse() {
-        assertTrue(SignUpActivity.validatePasswordLength(""));
+        assertFalse(SignUpActivity.validatePasswordLength(""));
     }
 }
