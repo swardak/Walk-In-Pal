@@ -1,6 +1,11 @@
 package  com.example.mywalkinpal.ui.login;
 
+import android.content.Intent;
+import android.view.View;
+
 import androidx.annotation.Nullable;
+
+import com.example.mywalkinpal.SignUpActivity;
 
 /**
  * Authentication result : success (user details) or error message.
@@ -28,4 +33,6 @@ class LoginResult {
     Integer getError() {
         return error;
     }
+
+
 }

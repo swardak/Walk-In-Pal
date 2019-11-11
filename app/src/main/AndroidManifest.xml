@@ -28,10 +28,30 @@
             android:name=".HomeActivity"
             android:label="MyWalkInPal" >
         </activity>
-
-        <meta-data
-            android:name="preloaded_fonts"
-            android:resource="@array/preloaded_fonts" />
+        <activity
+            android:name=".AdminFunctionalityActivity"
+            android:label="MyWalkInPal" >
+        </activity>
+        <activity
+            android:name=".ClinicListActivity"
+            android:label="MyWalkInPal" >
+        </activity>
+        <activity
+            android:name=".AccountListActivity"
+            android:label="MyWalkInPal" >
+        </activity>
+        <activity
+            android:name=".ServiceListActivity"
+            android:label="MyWalkInPal" >
+        </activity>
+        <activity
+            android:name=".AddServiceActivity"
+            android:label="MyWalkInPal" >
+        </activity>
+        <activity
+            android:name=".ModifyServiceActivity"
+            android:label="MyWalkInPal" >
+        </activity>
     </application>
 
 </manifest>

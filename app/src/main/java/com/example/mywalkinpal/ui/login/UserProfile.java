@@ -1,11 +1,13 @@
 package com.example.mywalkinpal.ui.login;
 
+import androidx.annotation.NonNull;
+
 public class UserProfile {
-    private String userEmail;
-    private String userFirstName;
-    private String userLastName;
-    private String userType;
-    private String hashedPass;
+    public String userEmail;
+    public String userFirstName;
+    public String userLastName;
+    public String userType;
+    public String hashedPass;
 
     public  UserProfile(){
 
@@ -54,4 +56,10 @@ public class UserProfile {
 
     public void setHashedPass(String pass){this.hashedPass = pass;}
 
+    @NonNull
+    @Override
+    public String toString() {
+        return "First Name: " + this.userFirstName + "\nLast Name: " + this.userLastName + "\nE-mail:" + this.userEmail;
+
+    }
 }
