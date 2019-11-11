@@ -82,7 +82,8 @@ public class AddServiceActivity extends AppCompatActivity {
         String serviceNameText = serviceName.getText().toString();
         String roleNameText = roleName.getText().toString();
 
-        if(serviceNameText.isEmpty() && roleNameText.isEmpty()){
+
+        if(!validateEmptyField(serviceNameText, roleNameText)){
             Toast.makeText(AddServiceActivity.this, "Please enter all the details", Toast.LENGTH_SHORT).show();
         }
         else if(serviceNameText.isEmpty()){
@@ -102,6 +103,15 @@ public class AddServiceActivity extends AppCompatActivity {
 
         return res;
 
+    }
+
+    protected static boolean validateEmptyField(String service, String role){
+        boolean result = true;
+
+        if(service.isEmpty() || role.isEmpty()){
+            result = false;
+        }
+        return result;
     }
 
     private void sendUserData(){
