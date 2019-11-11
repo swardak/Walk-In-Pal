@@ -6,20 +6,19 @@ import static org.junit.Assert.*;
 public class NoEmptyFieldsValidatorUnitTest {
     @Test
     public void noEmptyFieldsValidatorUnitTest_NoEmptyFields_ReturnsTrue() {
-        assertTrue((SignUpActivity.validateNoEmptyFields("name", "last", "email@email.com", "passwordconf",
-                "passwordconf")== true));
+        assert(SignUpActivity.validateNoEmptyFields("name", "last", "email@email.com", "passwordconf",
+                "passwordconf"));
     }
 
     @Test
     public void noEmptyFieldsValidatorUnitTest_OneEmptyField_ReturnsFalse() {
-        assertTrue((SignUpActivity.validateNoEmptyFields
-                ("name", "last", "email@email.com", "",
-                        "passwordconf") == false));
+        assertFalse(SignUpActivity.validateNoEmptyFields("name", "last",
+                "email@email.com", "", "passwordconf"));
     }
 
     @Test
     public void noEmptyFieldsValidatorUnitTest_AllEmptyFields_ReturnsFalse() {
-        assertTrue((SignUpActivity.validateNoEmptyFields("", "", "",
-                "", "")== false));
+        assertFalse(SignUpActivity.validateNoEmptyFields("", "", "",
+                "", ""));
     }
 }

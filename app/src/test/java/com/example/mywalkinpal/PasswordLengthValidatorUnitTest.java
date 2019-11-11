@@ -6,16 +6,16 @@ import static org.junit.Assert.*;
 public class PasswordLengthValidatorUnitTest {
     @Test
     public void passwordLengthValidatorUnitTest_PasswordCorrectLength_ReturnsTrue() {
-        assertTrue((SignUpActivity.validatePasswordLength("PasswordConf")== true));
+        assertTrue(SignUpActivity.validatePasswordLength("PasswordConf"));
     }
 
     @Test
     public void passwordLengthValidatorUnitTest_PasswordTooShort_ReturnsFalse() {
-        assertTrue((SignUpActivity.validatePasswordLength("pass")== false));
+        assertFalse(SignUpActivity.validatePasswordLength("pass"));
     }
 
     @Test
     public void passwordLengthValidatorUnitTest_PasswordNull_ReturnsFalse() {
-        assertTrue((SignUpActivity.validatePasswordLength("")== false));
+        assertTrue(SignUpActivity.validatePasswordLength(""));
     }
 }

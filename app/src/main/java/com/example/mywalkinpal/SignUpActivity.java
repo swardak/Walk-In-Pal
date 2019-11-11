@@ -104,20 +104,27 @@ public class SignUpActivity extends AppCompatActivity {
 
     }
 
+    @NonNull
     private String getFirstName(){
        return userFN.getText().toString();
     }
 
+    @NonNull
     private String getLastName(){
         return userLN.getText().toString();
     }
 
+    @NonNull
     private String geteMail(){
         return userEmail.getText().toString();
     }
+
+    @NonNull
     private String getPassword(){
         return userPassword.getText().toString();
     }
+
+    @NonNull
     private String getConfirmedPassword(){
         return userConfirmedPassword.getText().toString();
     }
