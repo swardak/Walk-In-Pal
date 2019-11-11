@@ -55,7 +55,9 @@ tools:context=".ui.login.LoginActivity">
         android:id="@+id/deleteUser"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="DELETE" />
+        android:backgroundTint="#E0272E"
+        android:text="DELETE"
+        android:textColor="@android:color/white" />
 
 </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -24,26 +24,27 @@
 
         <EditText
             android:id="@+id/entFN"
-            android:layout_width="0dp"
+            android:layout_width="245dp"
             android:layout_height="wrap_content"
             android:autofillHints="@string/prompt_firstname"
             android:ems="10"
             android:hint="@string/hint_firstname"
             android:inputType="textPersonName"
+            android:textColor="@android:color/white"
             android:textColorHint="#FFA4A4"
-            app:layout_constraintBottom_toTopOf="@+id/entFNtxt"
-            app:layout_constraintEnd_toEndOf="@+id/entFNtxt"
-            app:layout_constraintStart_toStartOf="@+id/entFNtxt"
-            app:layout_constraintTop_toBottomOf="@+id/logoWalkInPal" />
+            app:layout_constraintBottom_toTopOf="@+id/entLNtxt"
+            app:layout_constraintEnd_toEndOf="@+id/entLNtxt"
+            app:layout_constraintStart_toStartOf="@+id/entLNtxt"
+            app:layout_constraintTop_toBottomOf="@+id/entFNtxt" />
 
         <ImageView
             android:id="@+id/logoWalkInPal"
-            android:layout_width="375dp"
-            android:layout_height="91dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
             android:contentDescription="@string/contentdesc_walkinpallogo"
-            app:layout_constraintBottom_toTopOf="@+id/entFN"
+            app:layout_constraintBottom_toTopOf="@+id/entFNtxt"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -51,9 +52,38 @@
 
         <TextView
             android:id="@+id/entFNtxt"
-            android:layout_width="0dp"
+            android:layout_width="245dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:text="@string/prompt_firstname"
+            android:textColor="@android:color/white"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@+id/entFN"
+            app:layout_constraintEnd_toEndOf="@+id/entFN"
+            app:layout_constraintStart_toStartOf="@+id/entFN"
+            app:layout_constraintTop_toBottomOf="@+id/logoWalkInPal" />
+
+        <EditText
+            android:id="@+id/entLN"
+            android:layout_width="245dp"
+            android:layout_height="wrap_content"
+            android:autofillHints="@string/prompt_lastname"
+            android:ems="10"
+            android:hint="@string/hint_lastname"
+            android:inputType="textPersonName"
+            android:textColor="@android:color/white"
+            android:textColorHint="#FFA4A4"
+            app:layout_constraintBottom_toTopOf="@+id/entEmailtxt"
+            app:layout_constraintEnd_toEndOf="@+id/entEmailtxt"
+            app:layout_constraintStart_toStartOf="@+id/entEmailtxt"
+            app:layout_constraintTop_toBottomOf="@+id/entLNtxt" />
+
+        <TextView
+            android:id="@+id/entLNtxt"
+            android:layout_width="245dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/prompt_lastname"
             android:textColor="@android:color/white"
             android:textSize="18sp"
             app:layout_constraintBottom_toTopOf="@+id/entLN"
@@ -62,24 +92,26 @@
             app:layout_constraintTop_toBottomOf="@+id/entFN" />
 
         <EditText
-            android:id="@+id/entLN"
-            android:layout_width="0dp"
+            android:id="@+id/entEmailField"
+            android:layout_width="245dp"
             android:layout_height="wrap_content"
-            android:autofillHints="@string/prompt_lastname"
+            android:autofillHints="@string/prompt_email"
             android:ems="10"
-            android:hint="@string/hint_lastname"
-            android:inputType="textPersonName"
+            android:hint="@string/hint_email"
+            android:inputType="textEmailAddress"
+            android:textColor="@android:color/white"
             android:textColorHint="#FFA4A4"
-            app:layout_constraintBottom_toTopOf="@+id/entLNtxt"
-            app:layout_constraintEnd_toEndOf="@+id/entLNtxt"
-            app:layout_constraintStart_toStartOf="@+id/entLNtxt"
-            app:layout_constraintTop_toBottomOf="@+id/entFNtxt" />
+            app:layout_constraintBottom_toTopOf="@+id/entPasswordtxt"
+            app:layout_constraintEnd_toEndOf="@+id/entPasswordtxt"
+            app:layout_constraintStart_toStartOf="@+id/entPasswordtxt"
+            app:layout_constraintTop_toBottomOf="@+id/entEmailtxt" />
 
         <TextView
-            android:id="@+id/entLNtxt"
-            android:layout_width="0dp"
+            android:id="@+id/entEmailtxt"
+            android:layout_width="245dp"
             android:layout_height="wrap_content"
-            android:text="@string/prompt_lastname"
+            android:layout_marginTop="16dp"
+            android:text="@string/prompt_email"
             android:textColor="@android:color/white"
             android:textSize="18sp"
             app:layout_constraintBottom_toTopOf="@+id/entEmailField"
@@ -88,65 +120,14 @@
             app:layout_constraintTop_toBottomOf="@+id/entLN" />
 
         <EditText
-            android:id="@+id/entEmailField"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:autofillHints="@string/prompt_email"
-            android:ems="10"
-            android:hint="@string/hint_email"
-            android:inputType="textEmailAddress"
-            android:textColorHint="#FFA4A4"
-            app:layout_constraintBottom_toTopOf="@+id/entEmailtxt"
-            app:layout_constraintEnd_toEndOf="@+id/entEmailtxt"
-            app:layout_constraintStart_toStartOf="@+id/entEmailtxt"
-            app:layout_constraintTop_toBottomOf="@+id/entLNtxt" />
-
-        <TextView
-            android:id="@+id/entEmailtxt"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@string/prompt_email"
-            android:textColor="@android:color/white"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toTopOf="@+id/entPassField"
-            app:layout_constraintEnd_toEndOf="@+id/entPassField"
-            app:layout_constraintStart_toStartOf="@+id/entPassField"
-            app:layout_constraintTop_toBottomOf="@+id/entEmailField" />
-
-        <EditText
             android:id="@+id/entPassField"
-            android:layout_width="0dp"
+            android:layout_width="245dp"
             android:layout_height="wrap_content"
             android:autofillHints="@string/prompt_password"
             android:ems="10"
             android:hint="@string/hint_password"
             android:inputType="textPassword"
-            android:textColorHint="#FFA4A4"
-            app:layout_constraintBottom_toTopOf="@+id/entPasswordtxt"
-            app:layout_constraintEnd_toEndOf="@+id/entPasswordtxt"
-            app:layout_constraintStart_toStartOf="@+id/entPasswordtxt"
-            app:layout_constraintTop_toBottomOf="@+id/entEmailtxt" />
-
-        <TextView
-            android:id="@+id/entPasswordtxt"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="@string/prompt_password"
             android:textColor="@android:color/white"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toTopOf="@+id/entconfirmPassfield"
-            app:layout_constraintEnd_toEndOf="@+id/entconfirmPassfield"
-            app:layout_constraintStart_toStartOf="@+id/entconfirmPassfield"
-            app:layout_constraintTop_toBottomOf="@+id/entPassField" />
-
-        <EditText
-            android:id="@+id/entconfirmPassfield"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:autofillHints="@string/prompt_confirmpassword"
-            android:ems="10"
-            android:hint="@string/hint_reenterpass"
-            android:inputType="textPassword"
             android:textColorHint="#FFA4A4"
             app:layout_constraintBottom_toTopOf="@+id/entconfirmpasswordtxt"
             app:layout_constraintEnd_toEndOf="@+id/entconfirmpasswordtxt"
@@ -154,28 +135,57 @@
             app:layout_constraintTop_toBottomOf="@+id/entPasswordtxt" />
 
         <TextView
-            android:id="@+id/entconfirmpasswordtxt"
-            android:layout_width="0dp"
+            android:id="@+id/entPasswordtxt"
+            android:layout_width="245dp"
             android:layout_height="wrap_content"
-            android:text="@string/prompt_confirmpassword"
+            android:layout_marginTop="16dp"
+            android:text="@string/prompt_password"
             android:textColor="@android:color/white"
             android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@+id/entPassField"
+            app:layout_constraintEnd_toEndOf="@+id/entPassField"
+            app:layout_constraintStart_toStartOf="@+id/entPassField"
+            app:layout_constraintTop_toBottomOf="@+id/entEmailField" />
+
+
+        <EditText
+            android:id="@+id/entconfirmPassfield"
+            android:layout_width="245dp"
+            android:layout_height="wrap_content"
+            android:autofillHints="@string/prompt_confirmpassword"
+            android:ems="10"
+            android:hint="@string/hint_reenterpass"
+            android:inputType="textPassword"
+            android:textColor="@android:color/white"
+            android:textColorHint="#FFA4A4"
             app:layout_constraintBottom_toTopOf="@+id/chooseUser"
             app:layout_constraintEnd_toEndOf="@+id/chooseUser"
             app:layout_constraintStart_toStartOf="@+id/chooseUser"
-            app:layout_constraintTop_toBottomOf="@+id/entconfirmPassfield" />
+            app:layout_constraintTop_toBottomOf="@+id/entconfirmpasswordtxt" />
 
+        <TextView
+            android:id="@+id/entconfirmpasswordtxt"
+            android:layout_width="245dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/prompt_confirmpassword"
+            android:textColor="@android:color/white"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@+id/entconfirmPassfield"
+            app:layout_constraintEnd_toEndOf="@+id/entconfirmPassfield"
+            app:layout_constraintStart_toStartOf="@+id/entconfirmPassfield"
+            app:layout_constraintTop_toBottomOf="@+id/entPassField" />
 
         <RadioGroup
             android:id="@+id/chooseUser"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:orientation="horizontal"
             app:layout_constraintBottom_toTopOf="@+id/SignUpButton"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/entconfirmpasswordtxt">
+            app:layout_constraintTop_toBottomOf="@+id/entconfirmPassfield">
 
             <RadioButton
                 android:id="@+id/employeeButton"
@@ -210,7 +220,7 @@
             style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:layout_marginBottom="32dp"
             android:background="#E0272E"
             android:text="@string/action_registeraccount"

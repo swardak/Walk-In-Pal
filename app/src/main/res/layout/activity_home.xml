@@ -27,17 +27,14 @@
             android:layout_height="113dp"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/Logo"
+            <ImageView
+                android:id="@+id/logoWalkInPal"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_gravity="center_horizontal|center_vertical"
-                android:fontFamily="sans-serif-condensed-medium"
-                android:text="Walk-in Pal"
-                android:textAlignment="center"
-                android:textAllCaps="false"
-                android:textColor="@android:color/white"
-                android:textSize="60sp" />
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:contentDescription="@string/contentdesc_walkinpallogo"
+                app:srcCompat="@drawable/logowalkinpal" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -59,7 +56,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal|center_vertical"
-                android:text="Welcome,"
+                android:text="@string/welcome"
                 android:textColor="@android:color/white"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -86,7 +83,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal|center_vertical"
-                android:text="You are logged in as: "
+                android:text="@string/userLoggedInAs"
                 android:textColor="@android:color/white"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -123,7 +120,9 @@
             android:id="@+id/nextButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="MANAGE" />
+            android:backgroundTint="#E0272E"
+            android:text="MANAGE"
+            android:textColor="@android:color/white" />
 
         <LinearLayout
             android:layout_width="match_parent"
