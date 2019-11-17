@@ -80,6 +80,8 @@ public class HomeActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if(userType.getText().equals("Admin")) {
                     startActivity(new Intent(HomeActivity.this, AdminFunctionalityActivity.class));
+                }else if(userType.getText().equals("Employee")){
+                    startActivity(new Intent(HomeActivity.this, EmployeeFunctionalityActivity.class));
                 }else{
                     startActivity(new Intent(HomeActivity.this, ClinicListActivity.class));
                 }

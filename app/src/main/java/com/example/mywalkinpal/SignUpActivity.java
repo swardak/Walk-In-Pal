@@ -17,6 +17,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 //import com.example.mywalkinpal.data.model.LoggedInUser;
 //import com.example.mywalkinpal.ui.login.LoginActivity;
+import com.example.mywalkinpal.ui.login.Employee;
 import com.example.mywalkinpal.ui.login.UserProfile;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.firebase.auth.AuthResult;
@@ -224,7 +225,13 @@ public class SignUpActivity extends AppCompatActivity {
 
         String hashedPass = sha256(pass);
 
-        UserProfile userProfile = new UserProfile(firstName, lastName, eMail,userTypestr,hashedPass);
+        UserProfile userProfile;
+        if(userTypestr == "Employee"){
+            userProfile = new Employee(firstName, lastName, eMail,userTypestr,hashedPass,null,null,null,null,null,null);
+
+        }else{
+            userProfile = new UserProfile(firstName, lastName, eMail,userTypestr,hashedPass);
+        }
         mDatabase.child("Users").child(fbAuth.getUid()).setValue(userProfile);
         Toast.makeText(SignUpActivity.this, "Data sent to Database", Toast.LENGTH_SHORT).show();
 

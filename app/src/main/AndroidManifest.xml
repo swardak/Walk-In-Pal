@@ -49,6 +49,18 @@
             android:label="MyWalkInPal" >
         </activity>
         <activity
+            android:name=".EmployeeFunctionalityActivity"
+            android:label="MyWalkInPal" >
+        </activity>
+        <activity
+            android:name=".ManageProfileActivity"
+            android:label="MyWalkInPal" >
+        </activity>
+        <activity
+            android:name=".ViewProfileActivity"
+            android:label="MyWalkInPal" >
+        </activity>
+        <activity
             android:name=".ModifyServiceActivity"
             android:label="MyWalkInPal" >
         </activity>
