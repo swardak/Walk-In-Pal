@@ -32,7 +32,7 @@ public class ManageClinicServiceListActivity extends AppCompatActivity {
     private Button addService;
     private FirebaseAuth fbAuth = FirebaseAuth.getInstance();
     DatabaseReference dbServices;
-    DatabaseReference dbClinics = FirebaseDatabase.getInstance().getReference("Clinics").child(fbAuth.getUid());
+    DatabaseReference dbClinics = FirebaseDatabase.getInstance().getReference("Users").child(fbAuth.getUid()).child("Services");
     //dbClinics
     ListView listView;
     ArrayList<String> arrayList = new ArrayList<>();
@@ -157,6 +157,7 @@ public class ManageClinicServiceListActivity extends AppCompatActivity {
                 else{
                     dbClinics.child(serviceNameText).setValue(roleNameText);
                     Toast.makeText(ManageClinicServiceListActivity.this, "Service added to clinic.",Toast.LENGTH_SHORT).show();
+
                 }
 
             }

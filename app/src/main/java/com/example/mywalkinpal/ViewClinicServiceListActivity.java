@@ -50,7 +50,7 @@ public class ViewClinicServiceListActivity extends AppCompatActivity {
         addService = (Button) findViewById(R.id.addClinicService);
         deleteService = (Button) findViewById(R.id.deleteClinicService);
 
-        dbClinicServices = FirebaseDatabase.getInstance().getReference("Clinics").child(fbAuth.getUid());
+        dbClinicServices = FirebaseDatabase.getInstance().getReference("Users").child(fbAuth.getUid()).child("Services");
 
         listView = (ListView) findViewById(R.id.clinicServiceListView);
         arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_activated_1,arrayList){
