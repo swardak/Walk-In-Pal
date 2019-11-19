@@ -1,11 +1,11 @@
 package com.example.mywalkinpal.ui.login;
 
 public class UserProfile {
-    public String userEmail;
-    public String userFirstName;
-    public String userLastName;
-    public String userType;
-    public String hashedPass;
+    private String userEmail;
+    private String userFirstName;
+    private String userLastName;
+    private String userType;
+    private String hashedPass;
 
     public  UserProfile(){
 

@@ -27,17 +27,14 @@
             android:layout_height="113dp"
             android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/Logo"
+            <ImageView
+                android:id="@+id/logoWalkInPal"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:layout_gravity="center_horizontal|center_vertical"
-                android:fontFamily="sans-serif-condensed-medium"
-                android:text="Walk-in Pal"
-                android:textAlignment="center"
-                android:textAllCaps="false"
-                android:textColor="@android:color/white"
-                android:textSize="60sp" />
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:contentDescription="@string/contentdesc_walkinpallogo"
+                app:srcCompat="@drawable/logowalkinpal" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -51,8 +48,22 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="146dp"
+            android:layout_height="198dp"
             android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:text="@string/welcome"
+                android:textColor="@android:color/white"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="25dp" />
 
             <TextView
                 android:id="@+id/userWelcome"
@@ -60,7 +71,26 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:textColor="@android:color/white"
+                android:textSize="18sp"
+                android:textStyle="bold|italic" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="25dp" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|center_vertical"
+                android:text="@string/userLoggedInAs"
+                android:textColor="@android:color/white"
+                android:textSize="18sp"
                 android:textStyle="bold" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="25dp" />
 
             <TextView
                 android:id="@+id/userType"
@@ -68,7 +98,12 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:textColor="@android:color/white"
-                android:textStyle="bold" />
+                android:textSize="18sp"
+                android:textStyle="bold|italic" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="25dp" />
 
         </LinearLayout>
 
@@ -79,7 +114,15 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="162dp" />
+            android:layout_height="23dp" />
+
+        <Button
+            android:id="@+id/nextButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#E0272E"
+            android:text="MANAGE"
+            android:textColor="@android:color/white" />
 
         <LinearLayout
             android:layout_width="match_parent"

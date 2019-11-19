@@ -1,8 +1,12 @@
 package com.example.mywalkinpal;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,6 +23,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 public class HomeActivity extends AppCompatActivity {
     Button logout;
     FirebaseAuth fbAuth;
@@ -26,6 +33,7 @@ public class HomeActivity extends AppCompatActivity {
     TextView firstName;
     TextView userType;
     FirebaseUser mUser;
+
 
 
     //@Override
@@ -49,10 +57,12 @@ public class HomeActivity extends AppCompatActivity {
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     UserProfile user = dataSnapshot.getValue(UserProfile.class);
 
+                    if(user.getUserFirstName().compareTo("Admin") == 0){
+                        user.setUserType("Admin");
+                    }
+
                     firstName.setText(user.getUserFirstName());
                     userType.setText(user.getUserType());
-
-
 
                 }
 
@@ -62,6 +72,21 @@ public class HomeActivity extends AppCompatActivity {
                 }
             });
         }
+        //View rootView = inflater.inflate()
+        Button btn = (Button) findViewById(R.id.nextButton);
+
+        btn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                if(userType.getText().equals("Admin")) {
+                    startActivity(new Intent(HomeActivity.this, AdminFunctionalityActivity.class));
+                }else if(userType.getText().equals("Employee")){
+                    startActivity(new Intent(HomeActivity.this, EmployeeFunctionalityActivity.class));
+                }else{
+                    startActivity(new Intent(HomeActivity.this, ClinicListActivity.class));
+                }
+            }
+        });
 
 
     }
