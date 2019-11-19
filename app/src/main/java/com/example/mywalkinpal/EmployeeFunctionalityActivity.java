@@ -2,17 +2,13 @@ package com.example.mywalkinpal;
 
 import android.os.Bundle;
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.mywalkinpal.ui.login.Employee;
-import com.example.mywalkinpal.ui.login.UserProfile;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -71,6 +67,33 @@ public class EmployeeFunctionalityActivity extends AppCompatActivity {
                 }
 
                 startActivity(new Intent(EmployeeFunctionalityActivity.this, ManageProfileActivity.class));
+
+            }
+        });
+
+        manageServiceBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                if(mUser == null){
+                    finish();
+                }
+
+                else{
+                    dbUsers.child("Users").child(mUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            Employee user = (Employee) dataSnapshot.getValue(Employee.class);
+                            startActivity(new Intent(EmployeeFunctionalityActivity.this, ViewClinicServiceListActivity.class));
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+                }
+
+                startActivity(new Intent(EmployeeFunctionalityActivity.this, ViewClinicServiceListActivity.class));
 
             }
         });
