@@ -16,20 +16,24 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.database.annotations.NotNull;
 
 import java.util.ArrayList;
 
-public class ServiceListActivity extends AppCompatActivity {
+public class ManageClinicServiceListActivity extends AppCompatActivity {
     private Button addService;
-    private Button deleteService;
-    private Button modifyService;
+    private FirebaseAuth fbAuth = FirebaseAuth.getInstance();
     DatabaseReference dbServices;
+    DatabaseReference dbClinics = FirebaseDatabase.getInstance().getReference("Clinics").child(fbAuth.getUid());
+    //dbClinics
     ListView listView;
     ArrayList<String> arrayList = new ArrayList<>();
     ArrayList<String> serviceNames = new ArrayList<>();
@@ -39,16 +43,15 @@ public class ServiceListActivity extends AppCompatActivity {
     ArrayAdapter<String> arrayAdapter;
     int pos;
 
+
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_service_list);
+        setContentView(R.layout.activity_manage_clinic_service_list);
 
-        addService = (Button) findViewById(R.id.addService);
-        deleteService = (Button) findViewById(R.id.deleteService);
-        modifyService = (Button) findViewById(R.id.modService);
+        addService = (Button) findViewById(R.id.addClinicServiceFromAdmin);
 
         dbServices = FirebaseDatabase.getInstance().getReference("Services");
-        listView = (ListView) findViewById(R.id.serviceListView);
+        listView = (ListView) findViewById(R.id.addServiceToClinicListView);
         arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_activated_1,arrayList){
             @Override
             public View getView(int position, View convertView, ViewGroup parent){
@@ -109,58 +112,28 @@ public class ServiceListActivity extends AppCompatActivity {
             }
         });
 
-        deleteService.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                if(!clicked){
-                    Toast.makeText(ServiceListActivity.this, "Please select an item to delete.",Toast.LENGTH_SHORT).show();
-
-                }
-                else{
-                    final String selectedService = (String) serviceNames.get(pos);
-                    dbServices.child(selectedService).addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            dbServices.child(serviceNames.get(pos)).removeValue();
-                        }
-
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                        }
-                    });
-
-                    Toast.makeText(ServiceListActivity.this, "Service Deleted!",Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(ServiceListActivity.this,ServiceListActivity.class));
-                }
-                }
-
-        });
-
         addService.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(ServiceListActivity.this,AddServiceActivity.class));
-            }
-        });
-
-        modifyService.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
                 if(!clicked){
-                    Toast.makeText(ServiceListActivity.this, "Please select an item to modify.",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ManageClinicServiceListActivity.this, "Please select a service to add.",Toast.LENGTH_SHORT).show();
 
                 }
 
                 else{
-                    String serviceName = module.getService();
-                    String roleName = module.getRole();
-                    Intent intent = new Intent(ServiceListActivity.this, ModifyServiceActivity.class);
-                    intent.putExtra("service_name", serviceName);
-                    intent.putExtra("service_role", roleName);
+                    //NOW ADD THE STUFF TO THE DB
+                    //FOLLOW THE STUFF FROM ADD SERVICE ACTIVITY
+                    //SEND THE USER DATA AND FINISH
+                    sendUserData();
+
+
+                    //String serviceName = module.getService();
+                    //String roleName = module.getRole();
+                    Intent intent = new Intent(ManageClinicServiceListActivity.this, ViewClinicServiceListActivity.class);
+                    //intent.putExtra("service_name", serviceName);
+                    //intent.putExtra("service_role", roleName);
+
                     startActivity(intent);
                 }
             }
@@ -170,4 +143,29 @@ public class ServiceListActivity extends AppCompatActivity {
 
 
     }
+
+    private void sendUserData(){
+        final String serviceNameText = module.getService();
+        final String roleNameText = module.getRole();
+
+        dbClinics.child(serviceNameText).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    Toast.makeText(ManageClinicServiceListActivity.this, "Service is already added to clinic.", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    dbClinics.child(serviceNameText).setValue(roleNameText);
+                    Toast.makeText(ManageClinicServiceListActivity.this, "Service added to clinic.",Toast.LENGTH_SHORT).show();
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
 }
+

@@ -6,12 +6,12 @@ import java.util.ArrayList;
 
 public class Employee extends UserProfile {
 
-    public String address;
-    public String phoneNumber;
-    public String clinicName;
-    public ArrayList<Service> services;
-    public ArrayList<String> insuranceTypesAccepted;
-    public ArrayList<String> paymentTypesAccepted;
+    private String address;
+    private String phoneNumber;
+    private String clinicName;
+    private ArrayList<Service> services;
+    private ArrayList<String> insuranceTypesAccepted;
+    private ArrayList<String> paymentTypesAccepted;
 
     public String getAddress() {
         return address;
