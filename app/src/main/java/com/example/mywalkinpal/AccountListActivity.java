@@ -72,10 +72,15 @@ public class AccountListActivity extends AppCompatActivity {
                 String value = dataSnapshot.getValue(UserProfile.class).toString();
                 String uID = dataSnapshot.getKey();
                 UserProfile user = dataSnapshot.getValue(UserProfile.class);
-                users.add(user);
-                uIDs.add(uID);
-                arrayList.add(value);
-                arrayAdapter.notifyDataSetChanged();
+                if (uID.equals("VIoOzYGOQxPbIie0uLZhUEUSYqp1")){
+                    
+                }
+                else {
+                    users.add(user);
+                    uIDs.add(uID);
+                    arrayList.add(value);
+                    arrayAdapter.notifyDataSetChanged();
+                }
             }
 
             @Override
