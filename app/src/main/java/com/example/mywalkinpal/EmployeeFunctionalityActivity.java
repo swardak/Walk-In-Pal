@@ -93,8 +93,6 @@ public class EmployeeFunctionalityActivity extends AppCompatActivity {
                     });
                 }
 
-                startActivity(new Intent(EmployeeFunctionalityActivity.this, ViewClinicServiceListActivity.class));
-
             }
         });
 
