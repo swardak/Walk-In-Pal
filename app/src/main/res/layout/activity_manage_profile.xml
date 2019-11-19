@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/holo_red_light"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context=".ui.login.LoginActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/mainAppContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/logoWalkInPal"
+                android:layout_width="375dp"
+                android:layout_height="91dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:contentDescription="@string/contentdesc_walkinpallogo"
+                app:srcCompat="@drawable/logowalkinpal" />
+
+            <TextView
+                android:id="@+id/addresstxt"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="Address:"
+                android:textColor="@android:color/white"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/updateAddress"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:autofillHints="@string/prompt_lastname"
+                android:ems="10"
+                android:hint="123 Iris Crescent"
+                android:inputType="textPostalAddress"
+                android:textColorHint="#FFA4A4" />
+
+            <TextView
+                android:id="@+id/phoneNumbertxt"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="Phone Number"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/updatePhoneNumber"
+                android:layout_width="253dp"
+                android:layout_height="55dp"
+                android:layout_gravity="center_horizontal"
+                android:autofillHints="@string/prompt_firstname"
+                android:ems="10"
+                android:hint="999-999-9999"
+                android:inputType="phone"
+                android:textColorHint="#FFA4A4" />
+
+            <TextView
+                android:id="@+id/nametxt"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="Clinic Name"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
+                android:textSize="18sp" />
+
+            <EditText
+                android:id="@+id/updateName"
+                android:layout_width="253dp"
+                android:layout_height="55dp"
+                android:layout_gravity="center_horizontal"
+                android:autofillHints="@string/prompt_firstname"
+                android:ems="10"
+                android:hint="My Clinic"
+                android:inputType="textPersonName"
+                android:textColorHint="#FFA4A4" />
+            <TextView
+                android:id="@+id/insurancetxt"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="Insurance Type Accepted"
+                android:textColor="@android:color/white"
+                android:textStyle="bold"
+                android:textSize="18sp" />
+
+            <CheckBox
+                android:id="@+id/checkBoxPublicIns"
+                android:layout_width="253dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:buttonTint="@android:color/white"
+                android:text="Public Insurance"
+                android:textColor="@android:color/white" />
+
+            <CheckBox
+                android:id="@+id/checkBoxPrivateIns"
+                android:layout_width="253dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Private Insurance"
+                android:buttonTint="@android:color/white"
+                android:textColor="@android:color/white" />
+
+            <TextView
+                android:id="@+id/paymenttxt"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="Payment Methods Accepted"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"
+                android:buttonTint="@android:color/white"
+                android:textSize="18sp" />
+
+            <CheckBox
+                android:id="@+id/checkBoxCash"
+                android:layout_width="253dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:buttonTint="@android:color/white"
+                android:text="Cash"
+                android:textColor="@android:color/white" />
+
+            <CheckBox
+                android:id="@+id/checkBoxCredit"
+                android:layout_width="253dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:buttonTint="@android:color/white"
+                android:text="Credit"
+                android:textColor="@android:color/white" />
+
+            <CheckBox
+                android:id="@+id/checkBoxDebit"
+                android:layout_width="253dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:buttonTint="@android:color/white"
+                android:text="Debit"
+                android:textColor="@android:color/white" />
+
+            <Button
+                android:id="@+id/modProfile"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="32dp"
+                android:background="#E0272E"
+                android:text="SAVE"
+                android:textAllCaps="true"
+                android:textColor="@android:color/white"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
