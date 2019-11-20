@@ -56,7 +56,15 @@
         <activity
             android:name=".ModifyServiceActivity"
             android:label="MyWalkInPal" />
-
+        <activity
+            android:name=".ManageWorkingHour"
+            android:label="MyWalkInPal" />
+        <activity
+            android:name=".ViewWorkingHour"
+            android:label="MyWalkInPal" />
+        <activity
+            android:name=".WorkingHourActivity"
+            android:label="MyWalkInPal" />
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

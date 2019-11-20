@@ -99,58 +99,10 @@ public class ManageProfileActivity extends AppCompatActivity {
             dbUsers.child(mUser.getUid()).child("address").setValue(updateAddress.getText().toString());
             dbUsers.child(mUser.getUid()).child("clinicName").setValue(updateName.getText().toString());
             dbUsers.child(mUser.getUid()).child("insuranceTypesAccepted").setValue(insuranceTypesAccepted);
-            dbUsers.child(mUser.getUid()).child("paymentTypesAccepted").setValue(insuranceTypesAccepted);
-            
+            dbUsers.child(mUser.getUid()).child("paymentTypesAccepted").setValue(paymentTypesAccepted);
 
-
-            /*dbUsers.child("Users").child(mUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    Employee user = dataSnapshot.getValue(Employee.class);
-                    user.setPhoneNumber(updatePhoneNumber.getText().toString());
-                    user.setAddress(updateAddress.getText().toString());
-                    user.setClinicName(updateName.getText().toString());
-                    insuranceTypesAccepted = new ArrayList<>();
-                    if(privateInsurance.isChecked()){
-                        insuranceTypesAccepted.add("Private Insurance");
-                    }
-                    if(publicInsurance.isChecked()){
-                        insuranceTypesAccepted.add("Public Insurance");
-                    }
-                    user.setInsuranceTypesAccepted(insuranceTypesAccepted);
-                    paymentTypesAccepted = new ArrayList<>();
-                    if(cash.isChecked()){
-                        paymentTypesAccepted.add("Cash");
-                    }
-                    if(debit.isChecked()){
-                        paymentTypesAccepted.add("Debit");
-                    }
-                    if(credit.isChecked()){
-                        paymentTypesAccepted.add("Credit");
-                    }
-                    user.setPaymentTypesAccepted(paymentTypesAccepted);
-
-                    HashMap<String, Object> result = new HashMap<>();
-                    /*result.put("address", updateAddress);
-                    dbUsers.child(mUser.getUid()).updateChildren(result);
-                    result.put("phoneNumber", updatePhoneNumber);
-                    dbUsers.child(mUser.getUid()).updateChildren(result);
-                    result.put("clinicName", updateName);
-
-                     */
-                    /*dbUsers.child(mUser.getUid()).updateChildren(result);
-                    result.put("insuranceTypeAccepted", insuranceTypesAccepted);
-                    dbUsers.child(mUser.getUid()).updateChildren(result);
-                    result.put("paymentTypeAccepted", paymentTypesAccepted);
-                    dbUsers.child(mUser.getUid()).updateChildren(result);*/
-                }
-
-               /* @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                }
-            });*/
         }
+    }
 
 
 

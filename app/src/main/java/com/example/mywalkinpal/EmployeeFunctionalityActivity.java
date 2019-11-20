@@ -96,5 +96,13 @@ public class EmployeeFunctionalityActivity extends AppCompatActivity {
             }
         });
 
+        workingHourBtn.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(EmployeeFunctionalityActivity.this, WorkingHourActivity.class));
+            }
+        });
+
     }
 }

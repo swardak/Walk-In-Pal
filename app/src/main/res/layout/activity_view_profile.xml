@@ -49,9 +49,12 @@
             <TextView
                 android:id="@+id/viewAddress"
                 android:layout_width="250dp"
-                android:layout_height="wrap_content"
+                android:layout_height="55dp"
                 android:layout_gravity="center_horizontal"
-                android:ems="10" />
+                android:ems="10"
+                android:textColor="@android:color/white"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/phoneNumbertxt"
@@ -68,6 +71,9 @@
                 android:layout_width="253dp"
                 android:layout_height="55dp"
                 android:layout_gravity="center_horizontal"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"
                 android:autofillHints="@string/prompt_firstname"
                 android:ems="10" />
 
@@ -86,6 +92,9 @@
                 android:layout_width="253dp"
                 android:layout_height="55dp"
                 android:layout_gravity="center_horizontal"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"
                 android:autofillHints="@string/prompt_firstname"
                 android:ems="10"/>
             <TextView
@@ -104,6 +113,8 @@
                 android:layout_width="253dp"
                 android:layout_height="55dp"
                 android:layout_gravity="center_horizontal"
+                android:textSize="18sp"
+                android:textStyle="bold"
                 android:textColor="@android:color/white" />
 
             <TextView
@@ -122,6 +133,8 @@
                 android:layout_width="253dp"
                 android:layout_height="55dp"
                 android:layout_gravity="center_horizontal"
+                android:textSize="18sp"
+                android:textStyle="bold"
                 android:textColor="@android:color/white" />
 
         </LinearLayout>
