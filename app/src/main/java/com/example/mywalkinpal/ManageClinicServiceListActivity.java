@@ -33,15 +33,17 @@ public class ManageClinicServiceListActivity extends AppCompatActivity {
     private FirebaseAuth fbAuth = FirebaseAuth.getInstance();
     DatabaseReference dbServices;
     DatabaseReference dbClinics = FirebaseDatabase.getInstance().getReference("Users").child(fbAuth.getUid()).child("Services");
-    //dbClinics
     ListView listView;
     ArrayList<String> arrayList = new ArrayList<>();
     ArrayList<String> serviceNames = new ArrayList<>();
     ArrayList<String> roleNames = new ArrayList<>();
-    private static Module module = new Module();
     Boolean clicked = false;
     ArrayAdapter<String> arrayAdapter;
     int pos;
+
+
+    Service service = new Service();
+    public ArrayList<Service> clinicServiceList = new ArrayList<>();
 
 
     public void onCreate(Bundle savedInstanceState) {
@@ -72,8 +74,6 @@ public class ManageClinicServiceListActivity extends AppCompatActivity {
                 String service = dataSnapshot.getKey().toString();
                 String serviceAndRole = "Service: " + service +"\nService Provider (Role): " + role;
 
-                //Service serv = dataSnapshot.getValue(Service.class);
-                //serviceNames.add(serv.getName());
                 serviceNames.add(service);
                 roleNames.add(role);
                 arrayList.add(serviceAndRole);
@@ -106,8 +106,8 @@ public class ManageClinicServiceListActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, final View view, final int position, long id) {
                 clicked = true;
                 pos = position;
-                module.setRole(roleNames.get(pos));
-                module.setService(serviceNames.get(pos));
+                service.setName(serviceNames.get(pos));
+                service.setRole(roleNames.get(pos));
 
             }
         });
@@ -118,23 +118,10 @@ public class ManageClinicServiceListActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(!clicked){
                     Toast.makeText(ManageClinicServiceListActivity.this, "Please select a service to add.",Toast.LENGTH_SHORT).show();
-
                 }
-
                 else{
-                    //NOW ADD THE STUFF TO THE DB
-                    //FOLLOW THE STUFF FROM ADD SERVICE ACTIVITY
-                    //SEND THE USER DATA AND FINISH
                     sendUserData();
-
-
-                    //String serviceName = module.getService();
-                    //String roleName = module.getRole();
-                    Intent intent = new Intent(ManageClinicServiceListActivity.this, ViewClinicServiceListActivity.class);
-                    //intent.putExtra("service_name", serviceName);
-                    //intent.putExtra("service_role", roleName);
-
-                    startActivity(intent);
+                    startActivity(new Intent(ManageClinicServiceListActivity.this, ViewClinicServiceListActivity.class));
                 }
             }
         });
@@ -145,8 +132,8 @@ public class ManageClinicServiceListActivity extends AppCompatActivity {
     }
 
     private void sendUserData(){
-        final String serviceNameText = module.getService();
-        final String roleNameText = module.getRole();
+        final String serviceNameText = service.getName();
+        final String roleNameText = service.getRole();
 
         dbClinics.child(serviceNameText).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -155,16 +142,13 @@ public class ManageClinicServiceListActivity extends AppCompatActivity {
                     Toast.makeText(ManageClinicServiceListActivity.this, "Service is already added to clinic.", Toast.LENGTH_SHORT).show();
                 }
                 else{
+                    clinicServiceList.add(service);
                     dbClinics.child(serviceNameText).setValue(roleNameText);
                     Toast.makeText(ManageClinicServiceListActivity.this, "Service added to clinic.",Toast.LENGTH_SHORT).show();
-
                 }
-
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
             }
         });
     }
