@@ -177,27 +177,27 @@ public class ManageWorkingHour extends AppCompatActivity {
         String SundayStartText = SundayStart.getText().toString();
         String SundayEndText = SundayEnd.getText().toString();
 
-
-        if(Monday.isChecked() && (MondayStartText == null || MondayEndText == null) ){
+        if(Monday.isChecked() && (MondayStartText.isEmpty() || MondayEndText.isEmpty()) ){
             Toast.makeText(ManageWorkingHour.this, "Please fill out the working hours of Monday.", Toast.LENGTH_SHORT).show();
-        }else if(Tuesday.isChecked() && (TuesdayStartText == null || TuesdayEndText == null)) {
+        }else if(Tuesday.isChecked() && (TuesdayStartText.isEmpty() || TuesdayEndText.isEmpty())) {
             Toast.makeText(ManageWorkingHour.this, "Please fill out the working hours of Tuesday.", Toast.LENGTH_SHORT).show();
-        }else if(Wednesday.isChecked() && (WednesdayStartText == null || WednesdayEndText == null)) {
+        }else if(Wednesday.isChecked() && (WednesdayStartText.isEmpty() || WednesdayEndText.isEmpty())) {
             Toast.makeText(ManageWorkingHour.this, "Please fill out the working hours of Tuesday.", Toast.LENGTH_SHORT).show();
-        }else if(Thursday.isChecked() && (ThursdayStartText == null || ThursdayEndText == null)) {
+        }else if(Thursday.isChecked() && (ThursdayStartText.isEmpty() || ThursdayEndText.isEmpty())) {
             Toast.makeText(ManageWorkingHour.this, "Please fill out the working hours of Tuesday.", Toast.LENGTH_SHORT).show();
-        }else if(Friday.isChecked() && (FridayStartText == null || FridayEndText == null)) {
+        }else if(Friday.isChecked() && (FridayStartText.isEmpty()|| FridayEndText.isEmpty())) {
         Toast.makeText(ManageWorkingHour.this, "Please fill out the working hours of Tuesday.", Toast.LENGTH_SHORT).show();
-        }else if(Saturday.isChecked() && ( SaturdayStartText == null || SaturdayEndText == null)) {
+        }else if(Saturday.isChecked() && ( SaturdayStartText.isEmpty() || SaturdayEndText.isEmpty())) {
             Toast.makeText(ManageWorkingHour.this, "Please fill out the working hours of Tuesday.", Toast.LENGTH_SHORT).show();
-        }else if(Sunday.isChecked() && (SundayStartText == null || SundayEndText == null)) {
+        }else if(Sunday.isChecked() && (SundayStartText.isEmpty()|| SundayEndText.isEmpty())) {
             Toast.makeText(ManageWorkingHour.this, "Please fill out the working hours of Tuesday.", Toast.LENGTH_SHORT).show();
         }
 
         else{
             ret = true;
+            Toast.makeText(ManageWorkingHour.this, "Valid", Toast.LENGTH_SHORT).show();
         }
-        Toast.makeText(ManageWorkingHour.this, "Valid", Toast.LENGTH_SHORT).show();
+
 
 
         return ret;
