@@ -112,9 +112,9 @@ public class ManageProfileActivity extends AppCompatActivity {
         String phoneNumberText = updatePhoneNumber.getText().toString();
         String nameText = updateName.getText().toString();
 
-        if(nameText.isEmpty() ){
+        if(!validateEmptyAddress(nameText)){
             Toast.makeText(ManageProfileActivity.this, "Please fill out a name.", Toast.LENGTH_SHORT).show();
-        }else if(addressText.isEmpty() ) {
+        }else if(!validateEmptyAddress(addressText) ) {
             Toast.makeText(ManageProfileActivity.this, "Please fill out an address.", Toast.LENGTH_SHORT).show();
         }else if(!isGlobalPhoneNumber(phoneNumberText)){
             Toast.makeText(ManageProfileActivity.this, "Please enter a valid global phone number.", Toast.LENGTH_SHORT).show();
@@ -128,9 +128,25 @@ public class ManageProfileActivity extends AppCompatActivity {
             Toast.makeText(ManageProfileActivity.this, "Valid", Toast.LENGTH_SHORT).show();
         }
 
-
         return ret;
 
+    }
 
+    protected static boolean validateEmptyAddress(String address){
+        boolean result = true;
+
+        if(address.isEmpty()){
+            result = false;
+        }
+        return result;
+    }
+
+    protected static boolean validateEmptyName(String name){
+        boolean result = true;
+
+        if(name.isEmpty()){
+            result = false;
+        }
+        return result;
     }
 }
