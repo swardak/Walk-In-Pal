@@ -83,7 +83,7 @@ public class HomeActivity extends AppCompatActivity {
                 }else if(userType.getText().equals("Employee")){
                     startActivity(new Intent(HomeActivity.this, EmployeeFunctionalityActivity.class));
                 }else{
-                    startActivity(new Intent(HomeActivity.this, ClinicListActivity.class));
+                    startActivity(new Intent(HomeActivity.this, SearchClinicsActivity.class));
                 }
             }
         });

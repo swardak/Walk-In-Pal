@@ -1,5 +1,6 @@
 package com.example.mywalkinpal.ui.login;
 
+import com.example.mywalkinpal.Rate;
 import com.example.mywalkinpal.Service;
 
 import java.lang.reflect.Array;
@@ -14,6 +15,9 @@ public class Employee extends UserProfile {
     private ArrayList<String> insuranceTypesAccepted;
     private ArrayList<String> paymentTypesAccepted;
     private ArrayList<ArrayList<String>> workingHours;
+    private Rate[] rates;
+
+    public Rate[] getRate(){return rates;};
 
     public ArrayList<ArrayList<String>> getWorkingHours() {
         return workingHours;
@@ -76,7 +80,7 @@ public class Employee extends UserProfile {
     public Employee(){
 
     }
-    public Employee(String userFirstName, String userLastName, String userEmail, String userType,String hashedPass, String address, String phoneNumber, String clinicName, ArrayList<String> insuranceTypesAccepted,ArrayList<String> paymentTypesAccepted, ArrayList<Service> services, ArrayList<ArrayList<String>> workingHours ){
+    public Employee(String userFirstName, String userLastName, String userEmail, String userType,String hashedPass, String address, String phoneNumber, String clinicName, ArrayList<String> insuranceTypesAccepted,ArrayList<String> paymentTypesAccepted, ArrayList<Service> services, ArrayList<ArrayList<String>> workingHours, Rate[] rates ){
         super( userFirstName, userLastName, userEmail, userType, hashedPass);
         this.address = address;
         this.paymentTypesAccepted = paymentTypesAccepted;
@@ -84,5 +88,6 @@ public class Employee extends UserProfile {
         this.clinicName = clinicName;
         this.services = services;
         this.workingHours = workingHours;
+        this.rates = rates;
     }
 }

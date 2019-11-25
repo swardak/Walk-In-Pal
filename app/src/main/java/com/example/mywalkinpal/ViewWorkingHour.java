@@ -52,41 +52,42 @@ public class ViewWorkingHour extends AppCompatActivity{
                     Employee user = dataSnapshot.getValue(Employee.class);
                     String mon, tues, wed, thurs, fri, sat, sun;
                     ArrayList<ArrayList<String>> workingHours = user.getWorkingHours();
-                    if(workingHours.get(0).get(0).equals("closed")){
-                        mon = "closed";
-                    }else{
-                        mon = workingHours.get(0).get(0)+ " - "  + workingHours.get(0).get(1);
-                    }
-                    if(workingHours.get(1).get(0).equals("closed")){
-                        tues = "closed";
-                    }else{
-                        tues = workingHours.get(1).get(0)+ " - "  + workingHours.get(1).get(1);
-                    }
-                    if(workingHours.get(2).get(0).equals("closed")){
-                        wed = "closed";
-                    }else{
-                        wed = workingHours.get(2).get(0)+ " - "  + workingHours.get(2).get(1);
-                    }
-                    if(workingHours.get(3).get(0).equals("closed")){
-                        thurs = "closed";
-                    }else{
-                        thurs = workingHours.get(3).get(0)+ " - "  + workingHours.get(3).get(1);
-                    }
-                    if(workingHours.get(4).get(0).equals("closed")){
-                        fri = "closed";
-                    }else{
-                        fri = workingHours.get(4).get(0) + " - " + workingHours.get(4).get(1);
-                    }
-                    if(workingHours.get(5).get(0).equals("closed")){
-                        sat = "closed";
-                    }else{
-                        sat = workingHours.get(5).get(0) + " - "  + workingHours.get(5).get(1);
-                    }
-                    if(workingHours.get(6).get(0).equals("closed")){
-                        sun = "closed";
-                    }else{
-                        sun = workingHours.get(6).get(0) + " - " + workingHours.get(6).get(1);
-                    }
+                        if (workingHours.get(0).get(0).equals("closed")) {
+                            mon = "closed";
+                        } else {
+                            mon = workingHours.get(0).get(0) + " - " + workingHours.get(0).get(1);
+                        }
+                        if (workingHours.get(1).get(0).equals("closed")) {
+                            tues = "closed";
+                        } else {
+                            tues = workingHours.get(1).get(0) + " - " + workingHours.get(1).get(1);
+                        }
+                        if (workingHours.get(2).get(0).equals("closed")) {
+                            wed = "closed";
+                        } else {
+                            wed = workingHours.get(2).get(0) + " - " + workingHours.get(2).get(1);
+                        }
+                        if (workingHours.get(3).get(0).equals("closed")) {
+                            thurs = "closed";
+                        } else {
+                            thurs = workingHours.get(3).get(0) + " - " + workingHours.get(3).get(1);
+                        }
+                        if (workingHours.get(4).get(0).equals("closed")) {
+                            fri = "closed";
+                        } else {
+                            fri = workingHours.get(4).get(0) + " - " + workingHours.get(4).get(1);
+                        }
+                        if (workingHours.get(5).get(0).equals("closed")) {
+                            sat = "closed";
+                        } else {
+                            sat = workingHours.get(5).get(0) + " - " + workingHours.get(5).get(1);
+                        }
+                        if (workingHours.get(6).get(0).equals("closed")) {
+                            sun = "closed";
+                        } else {
+                            sun = workingHours.get(6).get(0) + " - " + workingHours.get(6).get(1);
+                        }
+
 
                     Monday.setText(mon);
                     Tuesday.setText(tues);

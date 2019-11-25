@@ -65,6 +65,21 @@
         <activity
             android:name=".WorkingHourActivity"
             android:label="MyWalkInPal" />
+        <activity
+            android:name=".SearchByAddressActivity"
+            android:label="MyWalkInPal" />
+        <activity
+            android:name=".SearchByServicesActivity"
+            android:label="MyWalkInPal" />
+        <activity
+            android:name=".SearchByWhActivity"
+            android:label="MyWalkInPal" />
+        <activity
+            android:name=".SearchClinicsActivity"
+            android:label="MyWalkInPal" />
+        <activity
+            android:name=".SearchByWhResultsActivity"
+            android:label="MyWalkInPal" />
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
