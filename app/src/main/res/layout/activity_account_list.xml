@@ -53,9 +53,11 @@ tools:context=".ui.login.LoginActivity">
 
     <Button
         android:id="@+id/deleteUser"
-        android:layout_width="match_parent"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:backgroundTint="#E0272E"
+        android:gravity="center"
         android:text="DELETE"
         android:textColor="@android:color/white" />
 

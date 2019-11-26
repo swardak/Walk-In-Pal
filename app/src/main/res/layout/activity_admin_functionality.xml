@@ -25,7 +25,7 @@
 
     <Button
         android:id="@+id/accountButton"
-        android:layout_width="wrap_content"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:backgroundTint="#E0272E"
@@ -38,7 +38,7 @@
 
     <Button
         android:id="@+id/serviceButton"
-        android:layout_width="wrap_content"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:backgroundTint="#E0272E"
