@@ -51,6 +51,8 @@ public class AccountListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account_list);
 
+        Button backBtn = (Button) findViewById(R.id.backButton);
+
         dbUsers = FirebaseDatabase.getInstance().getReference("Users");
         listView = (ListView) findViewById(R.id.acctListView);
         final Button deleteButton = findViewById(R.id.deleteUser);
@@ -133,6 +135,12 @@ public class AccountListActivity extends AppCompatActivity {
             }
         });
 
+        backBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(AccountListActivity.this, AdminFunctionalityActivity.class));
+            }
+        });
 
     }
 

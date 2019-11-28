@@ -13,7 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".ViewClinicServiceListActivity"></activity>
+        <activity android:name=".AppointmentBookingActivity"></activity>
+        <activity android:name=".ViewClinicServiceListActivity" />
         <activity android:name=".ManageClinicServiceListActivity" />
         <activity android:name=".SignUpActivity" />
         <activity android:name=".ui.login.LoggedInUserView" />
@@ -80,6 +81,7 @@
         <activity
             android:name=".SearchByWhResultsActivity"
             android:label="MyWalkInPal" />
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

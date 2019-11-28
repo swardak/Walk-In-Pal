@@ -1,6 +1,7 @@
 package com.example.mywalkinpal;
 
 import android.app.Application;
+import android.content.Intent;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.view.View;
@@ -44,6 +45,14 @@ public class AddServiceActivity extends AppCompatActivity {
                     Toast.makeText(AddServiceActivity.this, "Could not add service", Toast.LENGTH_SHORT).show();
 
                 }
+            }
+        });
+
+        Button backBtn = (Button) findViewById(R.id.backButton);
+        backBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(AddServiceActivity.this, ServiceListActivity.class));
             }
         });
     }
@@ -123,4 +132,5 @@ public class AddServiceActivity extends AppCompatActivity {
         db.child("Services").child(serviceNameText).setValue(roleNameText);
 
     }
+
 }

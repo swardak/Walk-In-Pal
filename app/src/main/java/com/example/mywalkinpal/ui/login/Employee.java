@@ -1,5 +1,6 @@
 package com.example.mywalkinpal.ui.login;
 
+import com.example.mywalkinpal.BookingQueue;
 import com.example.mywalkinpal.Rate;
 import com.example.mywalkinpal.Service;
 
@@ -16,6 +17,7 @@ public class Employee extends UserProfile {
     private ArrayList<String> paymentTypesAccepted;
     private ArrayList<ArrayList<String>> workingHours;
     private Rate[] rates;
+    private BookingQueue bookingQueue;
 
     public Rate[] getRate(){return rates;};
 
@@ -75,12 +77,24 @@ public class Employee extends UserProfile {
         this.paymentTypesAccepted = paymentTypesAccepted;
     }
 
+    public BookingQueue getBookingQueue(){
+        return bookingQueue;
+    }
+
+    public void setBookingQueue(BookingQueue bookingQueue){
+        this.bookingQueue = bookingQueue;
+    }
+
 
 
     public Employee(){
 
     }
-    public Employee(String userFirstName, String userLastName, String userEmail, String userType,String hashedPass, String address, String phoneNumber, String clinicName, ArrayList<String> insuranceTypesAccepted,ArrayList<String> paymentTypesAccepted, ArrayList<Service> services, ArrayList<ArrayList<String>> workingHours, Rate[] rates ){
+    public Employee(String userFirstName, String userLastName, String userEmail, String userType,
+                    String hashedPass, String address, String phoneNumber, String clinicName,
+                    ArrayList<String> insuranceTypesAccepted,ArrayList<String> paymentTypesAccepted,
+                    ArrayList<Service> services, ArrayList<ArrayList<String>> workingHours,
+                    Rate[] rates, BookingQueue bookingQueue){
         super( userFirstName, userLastName, userEmail, userType, hashedPass);
         this.address = address;
         this.paymentTypesAccepted = paymentTypesAccepted;
@@ -89,5 +103,6 @@ public class Employee extends UserProfile {
         this.services = services;
         this.workingHours = workingHours;
         this.rates = rates;
+        this.bookingQueue = bookingQueue;
     }
 }

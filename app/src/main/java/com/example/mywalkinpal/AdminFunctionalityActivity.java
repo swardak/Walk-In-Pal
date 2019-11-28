@@ -16,6 +16,7 @@ public class AdminFunctionalityActivity extends AppCompatActivity {
 
         Button serviceBtn = (Button) findViewById(R.id.serviceButton);
         Button accountBtn = (Button) findViewById(R.id.accountButton);
+        Button backBtn = (Button) findViewById(R.id.backButton);
 
 
         serviceBtn.setOnClickListener(new View.OnClickListener(){
@@ -30,6 +31,13 @@ public class AdminFunctionalityActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(AdminFunctionalityActivity.this, AccountListActivity.class));
+            }
+        });
+
+        backBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(AdminFunctionalityActivity.this, HomeActivity.class));
             }
         });
     }

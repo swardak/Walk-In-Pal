@@ -58,7 +58,7 @@
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="50dp" />
+                android:layout_height="30dp" />
 
             <Button
                 android:id="@+id/searchTimeButton"
@@ -71,7 +71,7 @@
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="50dp" />
+                android:layout_height="30dp" />
 
             <Button
                 android:id="@+id/searchAddressButton"
@@ -81,6 +81,10 @@
                 android:backgroundTint="#E0272E"
                 android:text="Search by address"
                 android:textColor="@android:color/white" />
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="60dp" />
 
         </LinearLayout>
 

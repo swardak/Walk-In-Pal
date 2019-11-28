@@ -152,7 +152,13 @@ public class ViewClinicServiceListActivity extends AppCompatActivity {
         });
 
 
-
+        Button backBtn = (Button) findViewById(R.id.backButton);
+        backBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(ViewClinicServiceListActivity.this, EmployeeFunctionalityActivity.class));
+            }
+        });
 
     }
 }

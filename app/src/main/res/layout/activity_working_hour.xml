@@ -45,5 +45,19 @@
         android:text="view working hours"
         android:textColor="@android:color/white" />
 
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+
+    <Button
+        android:id="@+id/backButton"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="40dp"
+        android:backgroundTint="#E0272E"
+        android:text="back to manage section"
+        android:textColor="@android:color/white" />
+
 
 </LinearLayout>

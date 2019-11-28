@@ -219,15 +219,15 @@ public class SignUpActivity extends AppCompatActivity {
         if(userTypestr.compareTo("I'm an Employee")==0){
             userTypestr = "Employee";
         }
-        else if(userTypestr.compareTo("I'm a Patient") == 0){
-            userTypestr = "Patient";
+        else if(userTypestr.compareTo("I'm a com.example.mywalkinpal.ui.login.Patient") == 0){
+            userTypestr = "com.example.mywalkinpal.ui.login.Patient";
         }
 
         String hashedPass = sha256(pass);
 
         UserProfile userProfile;
         if(userTypestr == "Employee"){
-            userProfile = new Employee(firstName, lastName, eMail,userTypestr,hashedPass,null,null,null,null,null,null, null, null);
+            userProfile = new Employee(firstName, lastName, eMail,userTypestr,hashedPass,null,null,null,null,null,null, null, null,null);
 
         }else{
             userProfile = new UserProfile(firstName, lastName, eMail,userTypestr,hashedPass);

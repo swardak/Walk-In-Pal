@@ -13,34 +13,31 @@ android:paddingTop="@dimen/activity_vertical_margin"
 android:background="@android:color/holo_red_light"
 tools:context=".ui.login.LoginActivity">
 
-<LinearLayout
+    <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="113dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="16dp"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/Logo"
+        <ImageView
+            android:id="@+id/imageView"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_gravity="center_horizontal|center_vertical"
-            android:fontFamily="sans-serif-condensed-medium"
-            android:text="Walk-in Pal"
-            android:textAlignment="center"
-            android:textAllCaps="false"
-            android:textColor="@android:color/white"
-            android:textSize="60sp" />
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            app:srcCompat="@drawable/logowalkinpal" />
 
     </LinearLayout>
 
     <ListView
         android:id="@+id/acctListView"
         android:layout_width="match_parent"
-        android:layout_height="400dp"
+        android:layout_height="350dp"
         android:choiceMode="singleChoice"
         android:divider="@android:drawable/divider_horizontal_bright">
 
@@ -51,7 +48,7 @@ tools:context=".ui.login.LoginActivity">
         android:layout_width="match_parent"
         android:layout_height="50dp" />
 
-    <Button
+        <Button
         android:id="@+id/deleteUser"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
@@ -61,5 +58,18 @@ tools:context=".ui.login.LoginActivity">
         android:text="DELETE"
         android:textColor="@android:color/white" />
 
-</LinearLayout>
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="25dp" />
+
+        <Button
+            android:id="@+id/backButton"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:backgroundTint="#E0272E"
+            android:text="back to manage section"
+            android:textColor="@android:color/white" />
+
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
