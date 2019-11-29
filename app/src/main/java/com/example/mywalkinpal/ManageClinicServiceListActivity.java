@@ -36,10 +36,7 @@ public class ManageClinicServiceListActivity extends AppCompatActivity {
     private Button addService;
     private FirebaseAuth fbAuth = FirebaseAuth.getInstance();
     DatabaseReference dbServices;
-    DatabaseReference dbRates;
     DatabaseReference dbClinics = FirebaseDatabase.getInstance().getReference("Users").child(fbAuth.getUid()).child("Services");
-    DatabaseReference dbClinicRates = FirebaseDatabase.getInstance().getReference("Users").child(fbAuth.getUid()).child("Rates");
-
     ListView listView;
     ArrayList<String> arrayList = new ArrayList<>();
     ArrayList<String> serviceNames = new ArrayList<>();
@@ -62,7 +59,6 @@ public class ManageClinicServiceListActivity extends AppCompatActivity {
         addService = (Button) findViewById(R.id.addClinicServiceFromAdmin);
 
         dbServices = FirebaseDatabase.getInstance().getReference("Services");
-        dbRates = FirebaseDatabase.getInstance().getReference("Rates");
 
         listView = (ListView) findViewById(R.id.addServiceToClinicListView);
         arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_activated_1,arrayList){
@@ -145,7 +141,7 @@ public class ManageClinicServiceListActivity extends AppCompatActivity {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             m_Text = input.getText().toString();
-
+                            service.setRate(m_Text);
                             sendUserData();
                             startActivity(new Intent(ManageClinicServiceListActivity.this, ViewClinicServiceListActivity.class));
                         }
@@ -157,7 +153,7 @@ public class ManageClinicServiceListActivity extends AppCompatActivity {
                         }
                     });
 
-                    service.setRate(m_Text);
+
                     builder.show();
 
                 }
@@ -188,8 +184,8 @@ public class ManageClinicServiceListActivity extends AppCompatActivity {
                 }
                 else{
                     clinicServiceList.add(service);
-                    dbClinics.child(serviceNameText).setValue(roleNameText);
-                    dbClinicRates.child(serviceNameText).setValue(rate);
+                    dbClinics.child(serviceNameText).child("Role").setValue(roleNameText);
+                    dbClinics.child(serviceNameText).child("Rate").setValue(rate);
                     Toast.makeText(ManageClinicServiceListActivity.this, "Service added to clinic.",Toast.LENGTH_SHORT).show();
                 }
             }

@@ -6,18 +6,21 @@ import android.widget.ArrayAdapter;
 import java.util.ArrayList;
 
 public class Module extends Application {
-    public ArrayList<String> servList = new ArrayList<>();
-    public ArrayAdapter<String> servAdapter;
-    public String service;
-    public String role;
+    private ArrayList<String> servList = new ArrayList<>();
+    private ArrayAdapter<String> servAdapter;
+    private String service;
+    private String role;
+
+    private String rate;
 
     public Module(){
 
     }
 
-    public Module(String service, String role){
+    public Module(String service, String role, String rate){
         this.service = service;
         this.role = role;
+        this.rate = rate;
     }
     public String getService(){
         return service;
@@ -30,5 +33,12 @@ public class Module extends Application {
     }
     public void setRole(String role){
         this.role = role;
+    }
+    public String getRate() {
+        return rate;
+    }
+
+    public void setRate(String rate) {
+        this.rate = rate;
     }
 }

@@ -68,57 +68,26 @@ public class ViewClinicServiceListActivity extends AppCompatActivity {
         };
 
         this.listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
-        listView.setAdapter(arrayAdapter);
-        String role;
-        String service;
         dbClinicServices.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                String role = dataSnapshot.getValue().toString();
                 String service = dataSnapshot.getKey().toString();
+
+                String role = dataSnapshot.child("Role").getValue().toString();
+                String rate = dataSnapshot.child("Rate").getValue().toString();
                 //String
-                String serviceAndRole = "Service: " + service +"\nService Provider (Role): " + role;
+                String stringService = "Service: " + service +"\nService Provider (Role): " + role + "\nRate: " + rate;
 
                 //Service serv = dataSnapshot.getValue(Service.class);
                 //serviceNames.add(serv.getName());
                 serviceNames.add(service);
                 roleNames.add(role);
-            }
-
-            @Override
-            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-            }
-
-            @Override
-            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
-
-        dbClinicRates.addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                String rate = dataSnapshot.getValue().toString();
-                //String
-                String rateString = "Rate: " + rate;
-
-                //Service serv = dataSnapshot.getValue(Service.class);
-                //serviceNames.add(serv.getName());
                 rates.add(rate);
-                arrayList.add(rateString);
-                arrayAdapter.notifyDataSetChanged();
+
+                arrayList.add(stringService);
+                listView.setAdapter(arrayAdapter);
+
+
             }
 
             @Override
@@ -141,6 +110,9 @@ public class ViewClinicServiceListActivity extends AppCompatActivity {
 
             }
         });
+
+
+
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
@@ -149,6 +121,7 @@ public class ViewClinicServiceListActivity extends AppCompatActivity {
                 pos = position;
                 clinicModule.setRole(roleNames.get(pos));
                 clinicModule.setService(serviceNames.get(pos));
+                clinicModule.setRate(rates.get(pos));
 
             }
         });
