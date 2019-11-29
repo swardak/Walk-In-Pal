@@ -22,6 +22,8 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -62,7 +64,40 @@ public class SearchByServicesActivity extends AppCompatActivity{
         this.serviceClinicList.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
         serviceClinicList.setAdapter(arrayAdapter);
 
-        goButton.setOnClickListener(new View.OnClickListener(){
+
+
+    /*    goButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                Query query = FirebaseDatabase.getInstance()
+                        .getReference("Users")
+                        .orderByChild("Services")
+                        .equalTo(serviceName);
+                query.addListenerForSingleValueEvent(valueEventListener);
+            }
+        });
+
+        ValueEventListener valueEventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                arrayList.clear();
+                if(dataSnapshot.exists
+                        ()){
+                    for(DataSnapshot snapshot: dataSnapshot.getChildren()){
+                        String employee = snapshot.getValue(Employee.class).toString();
+                        arrayList.add(employee);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        };
+       /* goButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
                 dbUsers.addChildEventListener(new ChildEventListener() {
@@ -113,6 +148,6 @@ public class SearchByServicesActivity extends AppCompatActivity{
                     }
                 });
             }
-        });
+        });*/
     }
 }

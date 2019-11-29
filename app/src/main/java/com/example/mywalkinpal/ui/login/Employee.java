@@ -75,6 +75,12 @@ public class Employee extends UserProfile {
         this.paymentTypesAccepted = paymentTypesAccepted;
     }
 
+    @Override
+    public String toString(){
+        return this.clinicName + "\nAddress: " + this.address + "\nPhone:" + this.phoneNumber;
+
+
+    }
 
 
     public Employee(){

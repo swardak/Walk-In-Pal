@@ -80,6 +80,9 @@
         <activity
             android:name=".SearchByWhResultsActivity"
             android:label="MyWalkInPal" />
+        <activity
+            android:name=".SearchByNameActivity"
+            android:label="MyWalkInPal" />
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

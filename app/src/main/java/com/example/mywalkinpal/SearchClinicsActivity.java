@@ -38,5 +38,14 @@ public class SearchClinicsActivity extends AppCompatActivity {
                 startActivity(new Intent(SearchClinicsActivity.this, SearchByServicesActivity.class));
             }
         });
+
+        Button sbName = (Button) findViewById(R.id.searchNameButton);
+
+        sbName.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(SearchClinicsActivity.this, SearchByNameActivity.class));
+            }
+        });
     }
 }
