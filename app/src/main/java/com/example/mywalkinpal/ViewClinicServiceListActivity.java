@@ -31,12 +31,10 @@ public class ViewClinicServiceListActivity extends AppCompatActivity {
     private Button deleteService;
 
     DatabaseReference dbClinicServices;
-    DatabaseReference dbClinicRates;
     ListView listView;
     ArrayList<String> arrayList = new ArrayList<>();
     ArrayList<String> serviceNames = new ArrayList<>();
     ArrayList<String> roleNames = new ArrayList<>();
-    ArrayList<String> rates = new ArrayList<>();
     private static Module clinicModule = new Module();
     Boolean clicked = false;
     ArrayAdapter<String> arrayAdapter;
@@ -53,7 +51,6 @@ public class ViewClinicServiceListActivity extends AppCompatActivity {
         deleteService = (Button) findViewById(R.id.deleteClinicService);
 
         dbClinicServices = FirebaseDatabase.getInstance().getReference("Users").child(fbAuth.getUid()).child("Services");
-        dbClinicRates = FirebaseDatabase.getInstance().getReference("Users").child(fbAuth.getUid()).child("Rates");
 
         listView = (ListView) findViewById(R.id.clinicServiceListView);
         arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_activated_1,arrayList){
@@ -69,55 +66,18 @@ public class ViewClinicServiceListActivity extends AppCompatActivity {
 
         this.listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
         listView.setAdapter(arrayAdapter);
-        String role;
-        String service;
         dbClinicServices.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 String role = dataSnapshot.getValue().toString();
                 String service = dataSnapshot.getKey().toString();
-                //String
                 String serviceAndRole = "Service: " + service +"\nService Provider (Role): " + role;
 
                 //Service serv = dataSnapshot.getValue(Service.class);
                 //serviceNames.add(serv.getName());
                 serviceNames.add(service);
                 roleNames.add(role);
-            }
-
-            @Override
-            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-            }
-
-            @Override
-            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
-
-        dbClinicRates.addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                String rate = dataSnapshot.getValue().toString();
-                //String
-                String rateString = "Rate: " + rate;
-
-                //Service serv = dataSnapshot.getValue(Service.class);
-                //serviceNames.add(serv.getName());
-                rates.add(rate);
-                arrayList.add(rateString);
+                arrayList.add(serviceAndRole);
                 arrayAdapter.notifyDataSetChanged();
             }
 

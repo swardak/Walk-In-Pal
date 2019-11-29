@@ -1,23 +1,19 @@
 package com.example.mywalkinpal;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.text.InputType;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -36,19 +32,14 @@ public class ManageClinicServiceListActivity extends AppCompatActivity {
     private Button addService;
     private FirebaseAuth fbAuth = FirebaseAuth.getInstance();
     DatabaseReference dbServices;
-    DatabaseReference dbRates;
     DatabaseReference dbClinics = FirebaseDatabase.getInstance().getReference("Users").child(fbAuth.getUid()).child("Services");
-    DatabaseReference dbClinicRates = FirebaseDatabase.getInstance().getReference("Users").child(fbAuth.getUid()).child("Rates");
-
     ListView listView;
     ArrayList<String> arrayList = new ArrayList<>();
     ArrayList<String> serviceNames = new ArrayList<>();
     ArrayList<String> roleNames = new ArrayList<>();
-    ArrayList<String> rates = new ArrayList<>();
     Boolean clicked = false;
     ArrayAdapter<String> arrayAdapter;
     int pos;
-    private String m_Text = "";
 
 
     Service service = new Service();
@@ -62,8 +53,6 @@ public class ManageClinicServiceListActivity extends AppCompatActivity {
         addService = (Button) findViewById(R.id.addClinicServiceFromAdmin);
 
         dbServices = FirebaseDatabase.getInstance().getReference("Services");
-        dbRates = FirebaseDatabase.getInstance().getReference("Rates");
-
         listView = (ListView) findViewById(R.id.addServiceToClinicListView);
         arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_activated_1,arrayList){
             @Override
@@ -131,35 +120,8 @@ public class ManageClinicServiceListActivity extends AppCompatActivity {
                     Toast.makeText(ManageClinicServiceListActivity.this, "Please select a service to add.",Toast.LENGTH_SHORT).show();
                 }
                 else{
-
-                    AlertDialog.Builder builder = new AlertDialog.Builder(ManageClinicServiceListActivity.this);
-                    builder.setTitle("Add a rate with the service");
-                    builder.setMessage("Rates are in $ CAD");
-                    final EditText input = new EditText(ManageClinicServiceListActivity.this);
-                    // Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
-                    input.setInputType(InputType.TYPE_CLASS_TEXT);
-                    builder.setView(input);
-
-                    // Set up the buttons
-                    builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            m_Text = input.getText().toString();
-
-                            sendUserData();
-                            startActivity(new Intent(ManageClinicServiceListActivity.this, ViewClinicServiceListActivity.class));
-                        }
-                    });
-                    builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.cancel();
-                        }
-                    });
-
-                    service.setRate(m_Text);
-                    builder.show();
-
+                    sendUserData();
+                    startActivity(new Intent(ManageClinicServiceListActivity.this, ViewClinicServiceListActivity.class));
                 }
             }
         });
@@ -178,7 +140,6 @@ public class ManageClinicServiceListActivity extends AppCompatActivity {
     private void sendUserData(){
         final String serviceNameText = service.getName();
         final String roleNameText = service.getRole();
-        final String rate = service.getRate();
 
         dbClinics.child(serviceNameText).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -189,7 +150,6 @@ public class ManageClinicServiceListActivity extends AppCompatActivity {
                 else{
                     clinicServiceList.add(service);
                     dbClinics.child(serviceNameText).setValue(roleNameText);
-                    dbClinicRates.child(serviceNameText).setValue(rate);
                     Toast.makeText(ManageClinicServiceListActivity.this, "Service added to clinic.",Toast.LENGTH_SHORT).show();
                 }
             }
@@ -198,8 +158,5 @@ public class ManageClinicServiceListActivity extends AppCompatActivity {
             }
         });
     }
-
-
-
 }
 
