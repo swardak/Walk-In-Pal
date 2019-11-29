@@ -219,8 +219,8 @@ public class SignUpActivity extends AppCompatActivity {
         if(userTypestr.compareTo("I'm an Employee")==0){
             userTypestr = "Employee";
         }
-        else if(userTypestr.compareTo("I'm a com.example.mywalkinpal.ui.login.Patient") == 0){
-            userTypestr = "com.example.mywalkinpal.ui.login.Patient";
+        else if(userTypestr.compareTo("I'm a Patient") == 0){
+            userTypestr = "Patient";
         }
 
         String hashedPass = sha256(pass);
