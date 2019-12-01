@@ -2,13 +2,18 @@ package com.example.mywalkinpal;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.renderscript.Sampler.Value;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -25,7 +30,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class SearchByServicesActivity extends AppCompatActivity{
     FirebaseAuth fbAuth;
@@ -36,7 +43,7 @@ public class SearchByServicesActivity extends AppCompatActivity{
     ListView serviceClinicList;
     ArrayList<String> arrayList = new ArrayList<>();
     ArrayList<String> clinicNames = new ArrayList<>();
-    ArrayAdapter<String> arrayAdapter;
+    ArrayAdapter arrayAdapter;
     ArrayList<UserProfile> users = new ArrayList<>();
     ArrayList<String> uIDs = new ArrayList<>();
 
@@ -49,9 +56,60 @@ public class SearchByServicesActivity extends AppCompatActivity{
         goButton = (Button) findViewById(R.id.goSearchServices);
         service = (EditText) findViewById(R.id.entServicesName);
         serviceClinicList = (ListView) findViewById(R.id.searchServiceList);
-        serviceName = service.toString();
+        serviceName = service.getText().toString();
 
-        arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_activated_1,arrayList){
+
+
+        //arrayList.add("Clinic 1");
+        //arrayList.add("Clinic 2");
+
+        goButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Query query = dbUsers.orderByChild("userType").equalTo("Employee");
+
+                ValueEventListener eventListener = new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                        for (DataSnapshot childSnapshot : dataSnapshot.getChildren()) {
+                            //arrayList.add(childSnapshot.toString());
+                            //arrayList.add(childSnapshot.child("userType").toString());
+                           //arrayList.add(childSnapshot.child("userType").getValue().toString());
+
+                            String userType = childSnapshot.child("userType").getValue().toString();
+
+                            if(userType.compareTo("Employee") == 0){
+                                //arrayList.add(childSnapshot.child("Services").getValue().toString());
+                                if(childSnapshot.child("Services").child(serviceName).exists()){
+                                    arrayList.add("Clinic Name : " + childSnapshot.child("clinicName").getValue().toString()+"\nAddress : " + childSnapshot.child("address").getValue().toString() + "\nPhone Number : " + childSnapshot.child("phoneNumber").getValue().toString());
+                                    //arrayList.add(childSnapshot.toString());
+                                }
+
+
+                            }
+
+
+                        }
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                };
+
+                dbUsers.addListenerForSingleValueEvent(eventListener);
+
+            }
+        });
+
+
+
+
+
+        arrayAdapter = new ArrayAdapter(this,android.R.layout.simple_list_item_activated_1,arrayList){
             @Override
             public View getView(int position, View convertView, ViewGroup parent){
                 View view = super.getView(position,convertView,parent);
@@ -61,93 +119,10 @@ public class SearchByServicesActivity extends AppCompatActivity{
                 return view;
             }
         };
+
         this.serviceClinicList.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
         serviceClinicList.setAdapter(arrayAdapter);
 
-
-
-    /*    goButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-
-                Query query = FirebaseDatabase.getInstance()
-                        .getReference("Users")
-                        .orderByChild("Services")
-                        .equalTo(serviceName);
-                query.addListenerForSingleValueEvent(valueEventListener);
-            }
-        });
-
-        ValueEventListener valueEventListener = new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                arrayList.clear();
-                if(dataSnapshot.exists
-                        ()){
-                    for(DataSnapshot snapshot: dataSnapshot.getChildren()){
-                        String employee = snapshot.getValue(Employee.class).toString();
-                        arrayList.add(employee);
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        };
-       /* goButton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                dbUsers.addChildEventListener(new ChildEventListener() {
-                    @Override
-                    public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                        String value = dataSnapshot.getValue(UserProfile.class).toString();
-                        String uID = dataSnapshot.getKey();
-                        UserProfile user = dataSnapshot.getValue(UserProfile.class);
-                        if (user.getUserType().equals("Employee")){
-                            Employee employee = dataSnapshot.getValue(Employee.class);
-                            ArrayList<Service> services = employee.getServices();
-                            if(services==null){
-
-                            }else {
-                                for(int i = 0;i< services.size();i++){
-                                    if(services.get(i).getName().equals(serviceName)){
-                                        users.add(employee);
-                                        clinicNames.add(employee.getClinicName());
-                                        uIDs.add(uID);
-                                        arrayList.add("Hello");
-                                        arrayAdapter.notifyDataSetChanged();
-
-                                    }
-                                }
-                            }
-                        }
-                    }
-
-
-                    @Override
-                    public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-                    }
-
-                    @Override
-                    public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-
-                    }
-
-                    @Override
-                    public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                    }
-                });
-            }
-        });*/
+        
     }
 }
