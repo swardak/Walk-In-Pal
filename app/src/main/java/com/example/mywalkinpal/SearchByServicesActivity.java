@@ -8,6 +8,7 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -45,7 +46,12 @@ public class SearchByServicesActivity extends AppCompatActivity{
     ArrayList<String> clinicNames = new ArrayList<>();
     ArrayAdapter arrayAdapter;
     ArrayList<UserProfile> users = new ArrayList<>();
-    ArrayList<String> uIDs = new ArrayList<>();
+    ArrayList<String> address = new ArrayList<>();
+    ArrayList<String> numbers = new ArrayList<>();
+    ArrayList<String> names = new ArrayList<>();
+
+    Boolean clicked = false;
+    int pos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,8 +63,6 @@ public class SearchByServicesActivity extends AppCompatActivity{
         service = (EditText) findViewById(R.id.entServicesName);
         serviceClinicList = (ListView) findViewById(R.id.searchServiceList);
         serviceName = service.getText().toString();
-
-
 
         //arrayList.add("Clinic 1");
         //arrayList.add("Clinic 2");
@@ -83,7 +87,10 @@ public class SearchByServicesActivity extends AppCompatActivity{
                                 //arrayList.add(childSnapshot.child("Services").getValue().toString());
                                 if(childSnapshot.child("Services").child(serviceName).exists()){
                                     arrayList.add("Clinic Name : " + childSnapshot.child("clinicName").getValue().toString()+"\nAddress : " + childSnapshot.child("address").getValue().toString() + "\nPhone Number : " + childSnapshot.child("phoneNumber").getValue().toString());
-                                    //arrayList.add(childSnapshot.toString());
+                                    address.add(childSnapshot.child("address").getValue().toString());
+                                    names.add(childSnapshot.child("clinicName").getValue().toString());
+                                    numbers.add(childSnapshot.child("phoneNumber").getValue().toString());
+
                                 }
 
 
@@ -122,6 +129,22 @@ public class SearchByServicesActivity extends AppCompatActivity{
 
         this.serviceClinicList.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
         serviceClinicList.setAdapter(arrayAdapter);
+
+        serviceClinicList.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?> parent, final View view, final int position, long id) {
+                clicked = true;
+                pos = position;
+                Intent intent = new Intent(SearchByServicesActivity.this, ViewClinicInfoActivity.class);
+
+                intent.putExtra("address", address.get(pos));
+                intent.putExtra("phoneNumber", numbers.get(pos));
+                intent.putExtra("name", names.get(pos));
+
+                startActivity(intent);
+
+            }
+        });
 
         
     }

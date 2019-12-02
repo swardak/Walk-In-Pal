@@ -83,6 +83,12 @@
         <activity
             android:name=".SearchByNameActivity"
             android:label="MyWalkInPal" />
+        <activity
+            android:name=".ViewClinicInfoActivity"
+            android:label="MyWalkInPal" />
+        <activity
+            android:name=".RateClinicActivity"
+            android:label="MyWalkInPal" />
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
