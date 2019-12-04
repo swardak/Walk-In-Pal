@@ -16,7 +16,6 @@ public class Employee extends UserProfile {
     private ArrayList<String> insuranceTypesAccepted;
     private ArrayList<String> paymentTypesAccepted;
     private ArrayList<ArrayList<String>> workingHours;
-    private Rate[] rates;
     private BookingQueue bookingQueue;
     private ArrayList<Rate> rates;
 
@@ -97,12 +96,12 @@ public class Employee extends UserProfile {
     public Employee(){
 
     }
+
     public Employee(String userFirstName, String userLastName, String userEmail, String userType,
-                    String hashedPass, String address, String phoneNumber, String clinicName,
-                    ArrayList<String> insuranceTypesAccepted,ArrayList<String> paymentTypesAccepted,
-                    ArrayList<Service> services, ArrayList<ArrayList<String>> workingHours,
-                    Rate[] rates, BookingQueue bookingQueue){
-    public Employee(String userFirstName, String userLastName, String userEmail, String userType,String hashedPass, String address, String phoneNumber, String clinicName, ArrayList<String> insuranceTypesAccepted,ArrayList<String> paymentTypesAccepted, ArrayList<Service> services, ArrayList<ArrayList<String>> workingHours, ArrayList<Rate> rates ){
+                String hashedPass, String address, String phoneNumber, String clinicName,
+                ArrayList<String> insuranceTypesAccepted,ArrayList<String> paymentTypesAccepted,
+                ArrayList<Service> services, ArrayList<ArrayList<String>> workingHours,
+                ArrayList<Rate> rates, BookingQueue bookingQueue){
         super( userFirstName, userLastName, userEmail, userType, hashedPass);
         this.address = address;
         this.paymentTypesAccepted = paymentTypesAccepted;

@@ -141,7 +141,7 @@ public class SearchByServicesActivity extends AppCompatActivity{
                 intent.putExtra("phoneNumber", numbers.get(pos));
                 intent.putExtra("name", names.get(pos));
 
-                startActivity(intent);
+                startActivity(new Intent(SearchByServicesActivity.this, AppointmentBookingActivity.class));
 
             }
         });
