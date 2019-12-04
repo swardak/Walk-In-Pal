@@ -32,6 +32,7 @@ public class ViewClinicServiceListActivity extends AppCompatActivity {
 
     DatabaseReference dbClinicServices;
     DatabaseReference dbClinicRates;
+    DatabaseReference dbClinicRoles;
     ListView listView;
     ArrayList<String> arrayList = new ArrayList<>();
     ArrayList<String> serviceNames = new ArrayList<>();
@@ -53,7 +54,8 @@ public class ViewClinicServiceListActivity extends AppCompatActivity {
         deleteService = (Button) findViewById(R.id.deleteClinicService);
 
         dbClinicServices = FirebaseDatabase.getInstance().getReference("Users").child(fbAuth.getUid()).child("Services");
-        dbClinicRates = FirebaseDatabase.getInstance().getReference("Users").child(fbAuth.getUid()).child("Rates");
+        dbClinicRoles = FirebaseDatabase.getInstance().getReference("Users").child(fbAuth.getUid()).child("Services").child("Role");
+        dbClinicRates = FirebaseDatabase.getInstance().getReference("Users").child(fbAuth.getUid()).child("Services").child("Rate");
 
         listView = (ListView) findViewById(R.id.clinicServiceListView);
         arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_activated_1,arrayList){
@@ -72,8 +74,8 @@ public class ViewClinicServiceListActivity extends AppCompatActivity {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 String service = dataSnapshot.getKey().toString();
-
                 String role = dataSnapshot.child("Role").getValue().toString();
+                @NonNull
                 String rate = dataSnapshot.child("Rate").getValue().toString();
                 //String
                 String stringService = "Service: " + service +"\nService Provider (Role): " + role + "\nRate: " + rate;
