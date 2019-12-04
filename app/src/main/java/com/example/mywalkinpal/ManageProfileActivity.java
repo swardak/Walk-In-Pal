@@ -112,7 +112,7 @@ public class ManageProfileActivity extends AppCompatActivity {
         String phoneNumberText = updatePhoneNumber.getText().toString();
         String nameText = updateName.getText().toString();
 
-        if(!validateEmptyAddress(nameText)){
+        if(!validateEmptyName(nameText)){
             Toast.makeText(ManageProfileActivity.this, "Please fill out a name.", Toast.LENGTH_SHORT).show();
         }else if(!validateEmptyAddress(addressText) ) {
             Toast.makeText(ManageProfileActivity.this, "Please fill out an address.", Toast.LENGTH_SHORT).show();
