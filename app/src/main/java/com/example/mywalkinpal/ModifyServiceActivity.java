@@ -62,11 +62,11 @@ public class ModifyServiceActivity extends AppCompatActivity {
         if(serviceNameText.isEmpty() && roleNameText.isEmpty()){
             Toast.makeText(ModifyServiceActivity.this, "Please enter all the details", Toast.LENGTH_SHORT).show();
         }
-        else if(serviceNameText.isEmpty()){
+        else if(!validateEmptyServiceName(serviceNameText)){
             Toast.makeText(ModifyServiceActivity.this, "Please enter a service name", Toast.LENGTH_SHORT).show();
 
         }
-        else if(roleNameText.isEmpty()){
+        else if(!validateEmptyRoleName(roleNameText)){
             Toast.makeText(ModifyServiceActivity.this, "Please enter a service provider type", Toast.LENGTH_SHORT).show();
 
         }
@@ -78,6 +78,25 @@ public class ModifyServiceActivity extends AppCompatActivity {
         return res;
 
     }
+
+    protected static boolean validateEmptyServiceName(String service){
+        boolean result = true;
+
+        if(service.isEmpty()){
+            result = false;
+        }
+        return result;
+    }
+
+    protected static boolean validateEmptyRoleName(String role){
+        boolean result = true;
+
+        if(role.isEmpty()){
+            result = false;
+        }
+        return result;
+    }
+
     private void update(){
 
         String serviceNameText = serviceName.getText().toString();

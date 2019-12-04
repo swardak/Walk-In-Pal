@@ -15,6 +15,11 @@ public class NoEmptyServicesRolesValidatorUnitTest {
     }
 
     @Test
+    public void noEmptyServicesRolesValidatorUnitTest_AnotherEmptyField_ReturnsFalse() {
+        assertFalse(AddServiceActivity.validateEmptyField("Injection", ""));
+    }
+
+    @Test
     public void noEmptyServicesRolesValidatorUnitTest_AllEmptyFields_ReturnsFalse() {
         assertFalse(AddServiceActivity.validateEmptyField("", ""));
     }

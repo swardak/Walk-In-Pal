@@ -78,20 +78,22 @@ public class RateClinicActivity extends AppCompatActivity{
 
     private boolean validate(){
 
+
         RadioButton oneStar, twoStar, threeStar, fourStar, fiveStar;
-        comment = (EditText) findViewById(R.id.entComment);
         oneStar = findViewById(R.id.rateOneStar);
         twoStar = findViewById(R.id.rateTwoStar);
         threeStar = findViewById(R.id.rateThreeStar);
         fourStar = findViewById(R.id.rateFourStar);
         fiveStar = findViewById(R.id.rateFiveStar);
+        comment = (EditText) findViewById(R.id.entComment);
+
         boolean result = false;
 
-        if((!oneStar.isChecked()) && (!twoStar.isChecked()) && (!threeStar.isChecked())&& (!fourStar.isChecked())&&(!fiveStar.isChecked())){
+        if(!(validateIfStarChecked(oneStar, twoStar, threeStar, fourStar, fiveStar))){
             Toast.makeText(RateClinicActivity.this, "Please select a rating", Toast.LENGTH_SHORT).show();
         }
 
-        else if(comment.toString().isEmpty()){
+        else if(!validateIfCommentIsEmpty(comment.toString())){
             Toast.makeText(RateClinicActivity.this, "Please enter a comment", Toast.LENGTH_SHORT).show();
 
         }
@@ -100,5 +102,21 @@ public class RateClinicActivity extends AppCompatActivity{
         }
 
         return result;
+    }
+
+    protected static boolean validateIfStarChecked(RadioButton oneStar, RadioButton twoStar,
+                                          RadioButton threeStar, RadioButton fourStar,
+                                          RadioButton fiveStar){
+        boolean res = true;
+        if((!oneStar.isChecked()) && (!twoStar.isChecked()) && (!threeStar.isChecked())&& (!fourStar.isChecked())&&(!fiveStar.isChecked())){
+            res = false;
+        }
+        return res;
+    }
+
+    protected static boolean validateIfCommentIsEmpty(String comment){
+        boolean res = true;
+        if (comment.isEmpty()){res = false;}
+        return res;
     }
 }
