@@ -13,6 +13,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.mywalkinpal.ui.login.LoginActivity;
 import com.example.mywalkinpal.ui.login.UserProfile;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -88,6 +89,12 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-
+        Button backBtn = (Button) findViewById(R.id.backButton);
+        backBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(HomeActivity.this, LoginActivity.class));
+            }
+        });
     }
 }

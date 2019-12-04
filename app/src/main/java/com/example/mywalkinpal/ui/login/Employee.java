@@ -1,5 +1,6 @@
 package com.example.mywalkinpal.ui.login;
 
+import com.example.mywalkinpal.BookingQueue;
 import com.example.mywalkinpal.Rate;
 import com.example.mywalkinpal.Service;
 
@@ -15,6 +16,8 @@ public class Employee extends UserProfile {
     private ArrayList<String> insuranceTypesAccepted;
     private ArrayList<String> paymentTypesAccepted;
     private ArrayList<ArrayList<String>> workingHours;
+    private Rate[] rates;
+    private BookingQueue bookingQueue;
     private ArrayList<Rate> rates;
 
     public ArrayList<Rate> getRate(){return rates;};
@@ -75,6 +78,14 @@ public class Employee extends UserProfile {
         this.paymentTypesAccepted = paymentTypesAccepted;
     }
 
+    public BookingQueue getBookingQueue(){
+        return bookingQueue;
+    }
+
+    public void setBookingQueue(BookingQueue bookingQueue){
+        this.bookingQueue = bookingQueue;
+    }
+
     @Override
     public String toString(){
         return this.clinicName + "\nAddress: " + this.address + "\nPhone:" + this.phoneNumber;
@@ -86,6 +97,11 @@ public class Employee extends UserProfile {
     public Employee(){
 
     }
+    public Employee(String userFirstName, String userLastName, String userEmail, String userType,
+                    String hashedPass, String address, String phoneNumber, String clinicName,
+                    ArrayList<String> insuranceTypesAccepted,ArrayList<String> paymentTypesAccepted,
+                    ArrayList<Service> services, ArrayList<ArrayList<String>> workingHours,
+                    Rate[] rates, BookingQueue bookingQueue){
     public Employee(String userFirstName, String userLastName, String userEmail, String userType,String hashedPass, String address, String phoneNumber, String clinicName, ArrayList<String> insuranceTypesAccepted,ArrayList<String> paymentTypesAccepted, ArrayList<Service> services, ArrayList<ArrayList<String>> workingHours, ArrayList<Rate> rates ){
         super( userFirstName, userLastName, userEmail, userType, hashedPass);
         this.address = address;
@@ -95,5 +111,6 @@ public class Employee extends UserProfile {
         this.services = services;
         this.workingHours = workingHours;
         this.rates = rates;
+        this.bookingQueue = bookingQueue;
     }
 }

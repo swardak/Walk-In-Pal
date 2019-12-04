@@ -45,7 +45,13 @@ public class ModifyServiceActivity extends AppCompatActivity {
                 }
             }
         });
-
+        Button backBtn = (Button) findViewById(R.id.backButton);
+        backBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(ModifyServiceActivity.this, ServiceListActivity.class));
+            }
+        });
 
     }
 

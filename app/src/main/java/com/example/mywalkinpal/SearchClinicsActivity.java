@@ -47,5 +47,6 @@ public class SearchClinicsActivity extends AppCompatActivity {
                 startActivity(new Intent(SearchClinicsActivity.this, SearchByNameActivity.class));
             }
         });
+
     }
 }

@@ -70,5 +70,13 @@ public class WorkingHourActivity extends AppCompatActivity{
                 });
             }
         });
+
+        Button backBtn = (Button) findViewById(R.id.backButton);
+        backBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(WorkingHourActivity.this, EmployeeFunctionalityActivity.class));
+            }
+        });
     }
 }

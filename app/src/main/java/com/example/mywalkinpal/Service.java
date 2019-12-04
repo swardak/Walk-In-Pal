@@ -5,6 +5,10 @@ public class Service {
     public String name;
     public String role;
 
+
+
+    private String rate;
+
     public Service(){
 
     }
@@ -26,6 +30,15 @@ public class Service {
     public void setRole(String role){
         this.role = role;
     }
+
+    public String getRate() {
+        return rate;
+    }
+
+    public void setRate(String rate) {
+        this.rate = rate;
+    }
+
     @Override
     public String toString(){
         return "Service: " + this.name + "\nRole: " + this.role;

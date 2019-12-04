@@ -227,7 +227,7 @@ public class SignUpActivity extends AppCompatActivity {
 
         UserProfile userProfile;
         if(userTypestr == "Employee"){
-            userProfile = new Employee(firstName, lastName, eMail,userTypestr,hashedPass,null,null,null,null,null,null, null, null);
+            userProfile = new Employee(firstName, lastName, eMail,userTypestr,hashedPass,null,null,null,null,null,null, null, null,null);
 
         }else{
             userProfile = new UserProfile(firstName, lastName, eMail,userTypestr,hashedPass);

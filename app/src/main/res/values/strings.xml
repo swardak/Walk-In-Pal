@@ -23,4 +23,5 @@
     <string name="action_patientbutton">I\'m a Patient</string>
     <string name="action_registeraccount">Register</string>
     <string name="userLoggedInAs">You are logged in as:</string>
+    <string name="action_manage">MANAGE</string>
 </resources>

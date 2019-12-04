@@ -114,8 +114,8 @@ public class ManageWorkingHour extends AppCompatActivity {
             }
             if(Thursday.isChecked()){
                 ArrayList<String> Thur = new ArrayList();
-                Thur.add(TuesdayStart.getText().toString());
-                Thur.add(TuesdayEnd.getText().toString());
+                Thur.add(ThursdayStart.getText().toString());
+                Thur.add(ThursdayEnd.getText().toString());
                 workingHours.add(Thur);
             }else{
                 ArrayList<String> Thur = new ArrayList();

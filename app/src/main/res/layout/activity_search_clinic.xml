@@ -58,7 +58,7 @@
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="50dp" />
+                android:layout_height="30dp" />
 
             <Button
                 android:id="@+id/searchTimeButton"
@@ -71,7 +71,7 @@
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="50dp" />
+                android:layout_height="30dp" />
 
             <Button
                 android:id="@+id/searchAddressButton"
@@ -84,6 +84,7 @@
 
             <Space
                 android:layout_width="match_parent"
+                android:layout_height="60dp" />
                 android:layout_height="50dp" />
 
             <Button
@@ -94,6 +95,7 @@
                 android:backgroundTint="#E0272E"
                 android:text="Search by clinic name"
                 android:textColor="@android:color/white" />
+
 
         </LinearLayout>
 

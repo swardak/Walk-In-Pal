@@ -31,10 +31,13 @@ public class ViewClinicServiceListActivity extends AppCompatActivity {
     private Button deleteService;
 
     DatabaseReference dbClinicServices;
+    DatabaseReference dbClinicRates;
+    DatabaseReference dbClinicRoles;
     ListView listView;
     ArrayList<String> arrayList = new ArrayList<>();
     ArrayList<String> serviceNames = new ArrayList<>();
     ArrayList<String> roleNames = new ArrayList<>();
+    ArrayList<String> rates = new ArrayList<>();
     private static Module clinicModule = new Module();
     Boolean clicked = false;
     ArrayAdapter<String> arrayAdapter;
@@ -51,6 +54,8 @@ public class ViewClinicServiceListActivity extends AppCompatActivity {
         deleteService = (Button) findViewById(R.id.deleteClinicService);
 
         dbClinicServices = FirebaseDatabase.getInstance().getReference("Users").child(fbAuth.getUid()).child("Services");
+        dbClinicRoles = FirebaseDatabase.getInstance().getReference("Users").child(fbAuth.getUid()).child("Services").child("Role");
+        dbClinicRates = FirebaseDatabase.getInstance().getReference("Users").child(fbAuth.getUid()).child("Services").child("Rate");
 
         listView = (ListView) findViewById(R.id.clinicServiceListView);
         arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_activated_1,arrayList){
@@ -65,20 +70,26 @@ public class ViewClinicServiceListActivity extends AppCompatActivity {
         };
 
         this.listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
-        listView.setAdapter(arrayAdapter);
         dbClinicServices.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                String role = dataSnapshot.getValue().toString();
                 String service = dataSnapshot.getKey().toString();
-                String serviceAndRole = "Service: " + service +"\nService Provider (Role): " + role;
+                String role = dataSnapshot.child("Role").getValue().toString();
+                @NonNull
+                String rate = dataSnapshot.child("Rate").getValue().toString();
+                //String
+                String stringService = "Service: " + service +"\nService Provider (Role): " + role + "\nRate: " + rate;
 
                 //Service serv = dataSnapshot.getValue(Service.class);
                 //serviceNames.add(serv.getName());
                 serviceNames.add(service);
                 roleNames.add(role);
-                arrayList.add(serviceAndRole);
-                arrayAdapter.notifyDataSetChanged();
+                rates.add(rate);
+
+                arrayList.add(stringService);
+                listView.setAdapter(arrayAdapter);
+
+
             }
 
             @Override
@@ -102,6 +113,9 @@ public class ViewClinicServiceListActivity extends AppCompatActivity {
             }
         });
 
+
+
+
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> parent, final View view, final int position, long id) {
@@ -109,6 +123,7 @@ public class ViewClinicServiceListActivity extends AppCompatActivity {
                 pos = position;
                 clinicModule.setRole(roleNames.get(pos));
                 clinicModule.setService(serviceNames.get(pos));
+                clinicModule.setRate(rates.get(pos));
 
             }
         });
@@ -152,7 +167,13 @@ public class ViewClinicServiceListActivity extends AppCompatActivity {
         });
 
 
-
+        Button backBtn = (Button) findViewById(R.id.backButton);
+        backBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(ViewClinicServiceListActivity.this, EmployeeFunctionalityActivity.class));
+            }
+        });
 
     }
 }
